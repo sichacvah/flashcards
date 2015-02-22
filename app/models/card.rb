@@ -5,11 +5,13 @@ class Card < ActiveRecord::Base
   validate :words_equal?
   before_validation :set_review_date
 
+
   protected
+
 
   def set_review_date
     current_date = Date.current
-    self.review_date = current_date.change(day: current_date.day+3)
+    self.review_date = current_date.change(day: current_date.day + 3)
   end
 
   def prepare_word(word)
