@@ -22,6 +22,4 @@ class Card < ActiveRecord::Base
       errors[:base] << "перевод не может быть равен оригиналу"
     end
   end
-
 end
-
