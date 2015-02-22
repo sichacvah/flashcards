@@ -2,7 +2,7 @@ SimpleForm.setup do |config|
   config.error_notification_class = "alert alert-danger"
   config.button_class = "btn btn-default"
   config.boolean_label_class = nils
-  config.wrappers :vertical_form, tag: "div", class: "form-group", 
+  config.wrappers :vertical_form, tag: "div", class: "form-group",
                   error_class: "has-error" do |b|
     b.use :html5
     b.use :placeholder
@@ -11,7 +11,6 @@ SimpleForm.setup do |config|
     b.optional :min_max
     b.optional :readonly
     b.use :label, class: "control-label"
-
     b.use :input, class: "form-control"
     b.use :error, wrap_with: { tag: "span", class: "help-block" }
     b.use :hint, wrap_with: { tag: "p", class: "help-block" }
@@ -126,3 +125,4 @@ SimpleForm.setup do |config|
     boolean: :vertical_boolean,
   }
 end
+
