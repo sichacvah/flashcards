@@ -6,9 +6,7 @@ class Card < ActiveRecord::Base
   validate :words_equal?
   before_validation :set_review_date
 
-
   protected
-
 
   def set_review_date
     current_date = Date.current

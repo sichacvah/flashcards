@@ -1,4 +1,3 @@
-
 SimpleForm.setup do |config|
 
   config.wrappers :default, class: :input, hint_class: :field_with_hint, 
