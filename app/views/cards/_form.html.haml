@@ -1,0 +1,4 @@
+= simple_form_for :card, url: cards_path do |f|
+  = f.input :original_text, hint: false, label: 'Оригинальный текст'
+  = f.input :translated_text
+  = f.button :submit

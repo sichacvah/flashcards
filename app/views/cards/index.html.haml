@@ -1,0 +1,19 @@
+%h1 Ваши карточки:
+%table.table.table-striped.table-hover
+  %thead
+    %tr
+      %td
+        %strong Оригинальный текст
+      %td
+        %strong Перевод
+      %td
+        %strong Дата просмотра
+  %tbody
+    - @cards.each do |card|
+      %tr
+        %td= card.original_text
+        %td= card.translated_text
+        %td= card.review_date.strftime("%d/%m/%Y")
+        %td= link_to "Просмотреть", card_path(card)
+        %td= link_to "Удалить", card_path(card), method: :delete, data: { confirm: "Вы уверены?" }
+        %td= link_to "Редактировать", edit_card_path(card)

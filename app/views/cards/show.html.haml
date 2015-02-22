@@ -1,0 +1,20 @@
+.panel.panel-default
+  .panel-heading Карточка
+  .panel-body
+    %p
+      %b
+        %em Оргинальный текст: 
+      = @card.original_text
+    %hr
+    %p
+      %b
+        %em Перевод: 
+      = @card.translated_text
+    %h6.text-right
+      %em= @card.review_date.strftime("%d/%m/%Y")
+
+%ul.pager
+  %li
+    =link_to "Редактировать", edit_card_path(@card)
+  %li
+    = link_to "Удалить", card_path(@card), method: :delete, data: { confirm: "Вы уверены?" }
