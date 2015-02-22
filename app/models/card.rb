@@ -1,5 +1,6 @@
 class Card < ActiveRecord::Base
-  include ActiveModel::Validations  
+  include ActiveModel::Validations
+
   validates :original_text, :translated_text, :review_date,
             presence: true
   validate :words_equal?
