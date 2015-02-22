@@ -1,0 +1,19 @@
+<h1>Ваши карточки:</h1>
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <td><strong>Оригинальный текст</strong></td>
+      <td><strong>Перевол</strong></td>
+      <td><strong>Дата просмотра</strong></td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cards.each do |card| %>
+      <tr>
+        <td><%= card.original_text %></td>
+        <td><%= card.translated_text %></td>
+        <td><%= card.review_date.strftime("%d/%m/%Y") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
