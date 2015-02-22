@@ -2,7 +2,8 @@ SimpleForm.setup do |config|
   config.error_notification_class = "alert alert-danger"
   config.button_class = "btn btn-default"
   config.boolean_label_class = nils
-  config.wrappers :vertical_form, tag: "div", class: "form-group",
+  config.wrappers :vertical_form, tag: "div", 
+                  class: "form-group",
                   error_class: "has-error" do |b|
     b.use :html5
     b.use :placeholder
@@ -42,7 +43,8 @@ SimpleForm.setup do |config|
     b.use :hint, wrap_with: { tag: "p", class: "help-block" }
   end
 
-  config.wrappers :vertical_radio_and_checkboxes, tag: "div", class: "form-group",
+  config.wrappers :vertical_radio_and_checkboxes, tag: "div",
+                  class: "form-group",
                   error_class: "has-error" do |b|
     b.use :html5
     b.optional :readonly
@@ -68,8 +70,9 @@ SimpleForm.setup do |config|
     end
   end
 
-  config.wrappers :horizontal_file_input, tag: "div", class: "form-group",
-                  error_class: "has-error" do |b|
+  config.wrappers :horizontal_file_input, tag: "div",
+                   class: "form-group",
+                   error_class: "has-error" do |b|
     b.use :html5
     b.use :placeholder
     b.optional :maxlength
@@ -97,8 +100,9 @@ SimpleForm.setup do |config|
     end
   end
 
-  config.wrappers :horizontal_radio_and_checkboxes, tag: "div", class: "form-group",
-                  error_class: "has-error" do |b|
+  config.wrappers :horizontal_radio_and_checkboxes, tag: "div",
+                   class: "form-group",
+                   error_class: "has-error" do |b|
     b.use :html5
     b.optional :readonly
     b.use :label, class: "col-sm-3 control-label"
@@ -109,8 +113,9 @@ SimpleForm.setup do |config|
     end
   end
 
-  config.wrappers :inline_form, tag: "div", class: "form-group",
-                  error_class: "has-error" do |b|
+  config.wrappers :inline_form, tag: "div",
+                   class: "form-group",
+                   error_class: "has-error" do |b|
     b.use :html5
     b.use :placeholder
     b.optional :maxlength
