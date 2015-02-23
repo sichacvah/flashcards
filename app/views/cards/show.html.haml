@@ -1,3 +1,7 @@
+- if notice.present?
+  .alert.alert-dismissible.alert-success
+    = notice
+
 .panel.panel-default
   .panel-heading Карточка
   .panel-body
@@ -18,4 +22,3 @@
     = link_to "Редактировать", edit_card_path(@card)
   %li
     = link_to "Удалить", card_path(@card), method: :delete, data: { confirm: "Вы уверены?" }
-

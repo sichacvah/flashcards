@@ -15,7 +15,7 @@ class CardsController < ApplicationController
   def create
     @card = Card.new(card_params)
     if @card.save
-      redirect_to @card, notice: "Book was successfully created."
+      redirect_to @card, notice: "Карточка создана."
     else
       render :new
     end
