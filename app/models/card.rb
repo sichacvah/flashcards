@@ -2,13 +2,12 @@ class Card < ActiveRecord::Base
   validates :original_text, :translated_text, :review_date,
             presence: true
   validate :words_equal?
-  before_validation :set_review_date
+  before_validation :set_review_date, if: :new_record?
 
   protected
 
   def set_review_date
-    unless self.review_date.present?
-      self.review_date = Date.today + 3.days
+    self.review_date = Date.today + 3.days
   end
 
   def prepare_word(word)
