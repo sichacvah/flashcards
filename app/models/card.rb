@@ -9,8 +9,7 @@ class Card < ActiveRecord::Base
   protected
 
   def set_review_date
-    current_date = Date.current
-    self.review_date = current_date.change(day: current_date.day + 3)
+    self.review_date = Date.today + 3.days
   end
 
   def prepare_word(word)
