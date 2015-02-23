@@ -1,0 +1,4 @@
+= simple_form_for @card, html: { class: 'form-horizontal' } do |f|
+  = f.input :original_text, hint: false, label: 'Оригинальный текст'
+  = f.input :translated_text, label: 'Перевод'
+  = f.button :submit
