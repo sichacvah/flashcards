@@ -14,7 +14,7 @@ class WordsDownloader
   def get_words(&closure)
     get_rows if @rows == nil
     words = []
-    closure = 
+    closure =
     if closure.nil?
       lambda { |row| return row.css("td") }
     else
@@ -30,7 +30,7 @@ class WordsDownloader
 
   def get_rows(&closure)
     doc = Nokogiri::HTML(open(@url))
-    closure = 
+    closure =
     if closure.nil?
       lambda { return doc.css(@table_selector).css("tr")[1..-1] }
     else
