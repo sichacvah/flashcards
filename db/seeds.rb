@@ -13,7 +13,7 @@ class WordsDownloader
   def get_words(&closure)
     get_rows if @rows == nil
     words = []
-    closure = lambda { |row| return row.css("td") } || lambda { closure }
+    closure = lambda { closure } || lambda { |row| return row.css("td") }
     @rows.each do |row|
       cols = closure.call(row)
       words << [cols[@original_text_col].text, cols[@translated_text_col].text]
@@ -23,7 +23,8 @@ class WordsDownloader
 
   def get_rows(&closure)
     doc = Nokogiri::HTML(open(@url))
-    closure = lambda { return doc.css("table.topwords").css("tr")[1..-1] } || lambda { closure }
+    closure = lambda { closure } || lambda { return \
+      doc.css("table.topwords").css("tr")[1..-1] }
     @rows = closure.call
   end
 end
@@ -32,8 +33,10 @@ class CardCreator < WordsDownloader
   def create
     words = get_words
     words.each do |original_text, translated_text|
-      Card.create!({ original_text: original_text,
-                     translated_text: translated_text })
+      Card.create!({ 
+        original_text: original_text,
+        translated_text: translated_text
+        })
     end
   end
 end
