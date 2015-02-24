@@ -13,7 +13,11 @@ class WordsDownloader
   def get_words(&closure)
     get_rows if @rows == nil
     words = []
-    closure = lambda { closure } || lambda { |row| return row.css("td") }
+    closure = if closure.nil?
+      lambda { |row| return row.css("td") }
+    else
+      lambda { closure }
+    end
     @rows.each do |row|
       cols = closure.call(row)
       words << [cols[@original_text_col].text, cols[@translated_text_col].text]
@@ -23,8 +27,11 @@ class WordsDownloader
 
   def get_rows(&closure)
     doc = Nokogiri::HTML(open(@url))
-    closure = lambda { closure } || lambda { return \
-      doc.css("table.topwords").css("tr")[1..-1] }
+    closure = if closure.nil?
+      lambda { return doc.css("table.topwords").css("tr")[1..-1] }
+    else
+      lambda { closure }
+    end
     @rows = closure.call
   end
 end
