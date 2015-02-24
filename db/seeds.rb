@@ -1,6 +1,6 @@
 # encoding: utf-8
-require 'open-uri'
-require 'nokogiri'
+require "open-uri"
+require "nokogiri"
 
 
 class WordsDownloader
@@ -18,7 +18,7 @@ class WordsDownloader
       cols = closure.call(row)
       words << [cols[@original_text_col].text, cols[@translated_text_col].text]
     end
-    return words
+    words
   end
 
   def get_rows(&closure)
