@@ -14,7 +14,8 @@ class WordsDownloader
   def get_words(&closure)
     get_rows if @rows == nil
     words = []
-    closure = if closure.nil?
+    closure = 
+    if closure.nil?
       lambda { |row| return row.css("td") }
     else
       # используется если требуемая информация находится не в табличной форме
