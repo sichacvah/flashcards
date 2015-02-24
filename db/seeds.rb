@@ -3,7 +3,8 @@ require "open-uri"
 require "nokogiri"
 
 class WordsDownloader
-  def initialize(url, original_text_col = 2, translated_text_col = 3, table_selector = "table.topwords")
+  def initialize(url, original_text_col = 2, translated_text_col = 3,
+  table_selector = "table.topwords")
     @url = url
     @original_text_col = original_text_col
     @translated_text_col = translated_text_col
@@ -45,8 +46,8 @@ class CardCreator < WordsDownloader
     words = get_words
     words.each do |original_text, translated_text|
       Card.create!(
-                  original_text: original_text,
-                  translated_text: translated_text
+                    original_text: original_text,
+                    translated_text: translated_text
                   )
     end
   end
@@ -61,4 +62,3 @@ cards_creator.create
 
 logger = Logger.new(STDOUT)
 logger.info "created #{Card.count} cards"
-
