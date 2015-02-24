@@ -29,7 +29,8 @@ class WordsDownloader
 
   def get_rows(&closure)
     doc = Nokogiri::HTML(open(@url))
-    closure = if closure.nil?
+    closure = 
+    if closure.nil?
       lambda { return doc.css(@table_selector).css("tr")[1..-1] }
     else
       # используется если требуемая информация находится не в табличной форме
