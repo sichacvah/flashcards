@@ -2,7 +2,6 @@
 require "open-uri"
 require "nokogiri"
 
-
 class WordsDownloader
   def initialize(url, original_text_col = 2, translated_text_col = 3, table_selector = "table.topwords")
     @url = url
