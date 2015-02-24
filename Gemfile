@@ -24,6 +24,8 @@ gem 'haml'
 
 gem 'simple_form'
 
+gem 'nokogiri'
+
 group :development, :test do
 
   gem 'byebug'
