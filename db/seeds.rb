@@ -45,14 +45,13 @@ class CardCreator < WordsDownloader
   def create
     words = get_words
     words.each do |original_text, translated_text|
-      Card.create!({ 
-        original_text: original_text,
-        translated_text: translated_text
-        })
+      Card.create!(
+                  original_text: original_text,
+                  translated_text: translated_text
+                  )
     end
   end
 end
-
 
 Card.delete_all
 
