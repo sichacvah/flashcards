@@ -17,7 +17,6 @@ class WordsDownloader
     closure = if closure.nil?
       lambda { |row| return row.css("td") }
     else
-      # используется если требуемая информация находится не в табличной форме
       lambda { closure }
     end
     @rows.each do |row|
@@ -30,9 +29,8 @@ class WordsDownloader
   def get_rows(&closure)
     doc = Nokogiri::HTML(open(@url))
     closure = if closure.nil?
-      lambda { return doc.css(@table_selector).css("tr")[1..-1] }
+      lambda { return doc.css().css("tr")[1..-1] }
     else
-      # используется если требуемая информация находится не в табличной форме
       lambda { closure }
     end
     @rows = closure.call
@@ -50,15 +48,3 @@ class CardCreator < WordsDownloader
     end
   end
 end
-
-
-Card.delete_all
-
-URL = "http://masterrussian.com/vocabulary/most_common_words.htm"
-
-cards_creator = CardCreator.new(URL)
-cards_creator.create
-
-logger = Logger.new(STDOUT)
-logger.info "created #{Card.count} cards"
-
