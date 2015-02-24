@@ -2,7 +2,6 @@
 require 'open-uri'
 require 'nokogiri'
 
-URL = "http://masterrussian.com/vocabulary/most_common_words.htm"
 
 class WordsDownloader
   def initialize(url, original_text_col = 2, translated_text_col = 3)
@@ -40,6 +39,7 @@ class CardCreator < WordsDownloader
 end
 
 Card.delete_all
+URL = "http://masterrussian.com/vocabulary/most_common_words.htm"
 cards_creator = CardCreator.new(URL)
 cards_creator.create
 puts "created #{Card.count} cards"
