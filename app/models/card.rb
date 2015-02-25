@@ -1,15 +1,14 @@
-# encoding: UTF-8
 class Card < ActiveRecord::Base
   validates :original_text, :translated_text, :review_date,
             presence: true
   validate :words_equal?
   before_validation :set_review_date, if: :new_record?
 
-  scope :get_random_card, -> {
+  scope :cards_for_review, -> {
     where("review_date < ?", Date.today).order("RANDOM()")
   }
 
-  def check_input(user_input)
+  def check_translation?(user_input)
     if prepare_word(user_input) == prepare_word(original_text)
       update_attribute(:review_date, self.review_date + 3)
     else
