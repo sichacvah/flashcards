@@ -5,15 +5,14 @@ class Card < ActiveRecord::Base
   validate :words_equal?
   before_validation :set_review_date, if: :new_record?
 
-  scope :get_random_card, -> { 
-    where("review_date < ?", Date.today).order("RANDOM()").first
+  scope :get_random_card, -> {
+    where("review_date < ?", Date.today).order("RANDOM()")
   }
 
-  def self.check_input(params)
-    card = find(params[:id])
-    if params[:user_input].squish.mb_chars.downcase.to_s == card.original_text.squish.mb_chars.downcase.to_s
-      card.review_date += 3.days
-      card.save!
+
+  def check_input(user_input)
+    if prepare_word(user_input) == prepare_word(original_text)
+      self.update_attribute(:review_date, self.review_date + 3)
     else
       false
     end
@@ -26,7 +25,7 @@ class Card < ActiveRecord::Base
   end
 
   def prepare_word(word)
-    word.strip.mb_chars.downcase.to_s
+    word.squish.mb_chars.downcase.to_s
   end
 
   def words_equal?

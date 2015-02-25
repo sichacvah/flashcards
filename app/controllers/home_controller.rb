@@ -5,7 +5,8 @@ class HomeController < ApplicationController
   end
 
   def check_answer
-    if Card.check_input(card_params)
+    @card = Card.find(review_params[:card_id])
+    if @card.check_input(review_params[:user_input])
       flash[:success] = "Правильно"
     else
       flash[:danger] = "Неправильно"
@@ -16,10 +17,10 @@ class HomeController < ApplicationController
   private
 
   def set_card
-    @card = Card.get_random_card
+    @card = Card.get_random_card.first
   end
 
-  def card_params
-    params.permit(:user_input, :id)
+  def review_params
+    params.permit(:card_id, :user_input)
   end
 end
