@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
-  before_action :set_card, only: :index
 
   def index
+    set_card
   end
 
   def review_card
