@@ -6,7 +6,7 @@ class HomeController < ApplicationController
 
   def review_card
     @card = Card.find(review_params[:card_id])
-    if @card.check_translation? review_params[:user_input]
+    if @card.check_translation review_params[:user_input]
       flash[:success] = "Правильно"
     else
       flash[:danger] = "Неправильно"
