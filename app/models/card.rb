@@ -5,7 +5,9 @@ class Card < ActiveRecord::Base
   validate :words_equal?
   before_validation :set_review_date, if: :new_record?
 
-  scope :get_random_card, -> { where("review_date < ?", Date.today).order("RANDOM()").first }
+  scope :get_random_card, -> { 
+    where("review_date < ?", Date.today).order("RANDOM()").first
+  }
 
   def self.check_input(params)
     card = find(params[:id])

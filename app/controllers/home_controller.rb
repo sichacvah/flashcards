@@ -5,7 +5,6 @@ class HomeController < ApplicationController
   end
 
   def check_answer
-    
     if Card.check_input(card_params)
       flash[:success] = "Правильно"
     else
@@ -15,7 +14,6 @@ class HomeController < ApplicationController
   end
 
   private
-
 
   def set_card
     @card = Card.get_random_card
