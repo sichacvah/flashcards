@@ -1,0 +1,10 @@
+= form_tag review_card_path, class: "form-horizontal", method: "put" do
+  %fieldset 
+    .form-group
+      %label.col-lg-2.control-label Оригинальный текст
+      .col-lg-10
+        = hidden_field_tag :card_id, @card.id
+        = text_field_tag :user_input,nil, class: "form-control"
+    .form-group
+      .col-lg-10.col-lg-offset-2
+        = button_tag "Проверить", class: "btn btn-default"

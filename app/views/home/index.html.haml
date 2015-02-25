@@ -1,2 +1,14 @@
 %h4 Первый в мире удобный менеджер флеш-катрочек. Именно так
+%br/
+- flash.each do |name, msg|
+  = content_tag :div, msg, class: "alert alert-#{name}"
+.panel.panel-default
+  .panel-heading Карточка
+  .panel-body
+    %p
+      %b
+        %em Перевод: 
+      = @card.translated_text
+    %hr
+    = render 'form'
 

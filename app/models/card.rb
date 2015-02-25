@@ -4,6 +4,18 @@ class Card < ActiveRecord::Base
   validate :words_equal?
   before_validation :set_review_date, if: :new_record?
 
+  scope :cards_for_review, -> {
+    where("review_date < ?", Date.today).order("RANDOM()")
+  }
+
+  def check_translation(user_input)
+    if prepare_word(user_input) == prepare_word(original_text)
+      update_attribute(:review_date, review_date + 3)
+    else
+      false
+    end
+  end
+
   protected
 
   def set_review_date
@@ -11,7 +23,7 @@ class Card < ActiveRecord::Base
   end
 
   def prepare_word(word)
-    word.strip.mb_chars.downcase.to_s
+    word.squish.mb_chars.downcase.to_s
   end
 
   def words_equal?
