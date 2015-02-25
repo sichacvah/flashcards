@@ -9,7 +9,6 @@ class Card < ActiveRecord::Base
     where("review_date < ?", Date.today).order("RANDOM()")
   }
 
-
   def check_input(user_input)
     if prepare_word(user_input) == prepare_word(original_text)
       self.update_attribute(:review_date, self.review_date + 3)
