@@ -11,7 +11,7 @@ class Card < ActiveRecord::Base
 
   def check_input(user_input)
     if prepare_word(user_input) == prepare_word(original_text)
-      self.update_attribute(:review_date, self.review_date + 3)
+      update_attribute(:review_date, self.review_date + 3)
     else
       false
     end
