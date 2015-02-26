@@ -5,7 +5,7 @@ class Card < ActiveRecord::Base
   before_validation :set_review_date, if: :new_record?
 
   scope :cards_for_review, -> {
-    where("review_date < ?", Date.today).order("RANDOM()")
+    where("review_date <= ?", Date.today).order("RANDOM()")
   }
 
   def check_translation(user_input)
