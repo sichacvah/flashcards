@@ -13,7 +13,7 @@ RSpec.describe Card, type: :model do
   it { should be_valid }
 
   describe "has true data in model" do
-    it { expect(@card.review_date).to eq(Date.today + 3.days)  }
+    it { expect(@card.review_date).to eq(Date.today + 3.days) }
     it { expect(@card.translated_text).to eq("text") }
     it { expect(@card.original_text).to eq("текст") }
   end
