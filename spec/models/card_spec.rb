@@ -28,7 +28,7 @@ describe Card do
       @card = Card.first
       @card.update_attribute(:review_date, Date.today)
     end
-    it { expect( Card.cards_for_review.first ).to be_valid }
+    it { expect(Card.cards_for_review.first).to be_valid }
   end
 
   describe "when translated text is not present" do
