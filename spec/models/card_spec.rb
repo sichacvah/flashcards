@@ -1,8 +1,8 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Card, type: :model do
   before do
-    @card = Card.create(translated_text: "text", original_text:"текст")
+    @card = Card.create(translated_text: "text", original_text: "текст")
   end
 
   subject { @card }
