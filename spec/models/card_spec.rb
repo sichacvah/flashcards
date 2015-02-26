@@ -32,7 +32,6 @@ RSpec.describe Card, type: :model do
     it { should be_valid }
   end
 
-
   describe "when translated text is not present" do
     before { @card.translated_text = "" }
     it { should_not be_valid }
@@ -52,5 +51,4 @@ RSpec.describe Card, type: :model do
   end
 
   after(:all) { Card.destroy_all }
-
 end
