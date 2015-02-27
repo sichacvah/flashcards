@@ -21,3 +21,10 @@ describe "the review card process" do
     review_translation("Doom", "Неправильно")
   end
 end
+
+describe "no cards" do
+  it "no cards" do
+    visit root_path
+    expect(page).to have_content "У вас нет ни одной карточки для просмотра"
+  end
+end
