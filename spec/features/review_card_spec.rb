@@ -1,7 +1,11 @@
 require "rails_helper"
+require 'support/review_translation_helper'
 
 describe "the review card process" do
-  let!(:card) { create(:card) }
+  before do
+    card = create(:card, original_text: "Home", translated_text: "Дом")
+    card.update_attribute :review_date, Date.today
+  end
 
   it "opens home page" do
     visit root_path
@@ -9,16 +13,10 @@ describe "the review card process" do
   end
 
   it "true review card" do
-    visit root_path
-    fill_in :user_input, with: "Home"
-    click_button "Проверить"
-    expect(page).to have_content "Правильно"
+    review_translation("Home", "Правильно")
   end
 
   it "false review card" do
-    visit root_path
-    fill_in :user_input, with: "Doom"
-    click_button "Проверить"
-    expect(page).to have_content "Неправильно"
+    review_translation("Doom", "Неправильно")
   end
 end
