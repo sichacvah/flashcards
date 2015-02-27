@@ -1,7 +1,6 @@
-default: &default
+test:
   adapter: postgresql
   encoding: unicode
-  database: cards_<%= Rails.env %>
+  database: cards_test
   pool: 5
-  timeout: 5000
 
