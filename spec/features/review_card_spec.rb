@@ -1,12 +1,5 @@
 require "rails_helper"
 
-def review_translation(text, result)
-  visit root_path
-  fill_in :user_input, with: text
-  click_button "Проверить"
-  expect(page).to have_content(result)
-end
-
 describe "the review card process" do
   before do
     card = create(:card, original_text: "Home", translated_text: "Дом")
@@ -14,11 +7,17 @@ describe "the review card process" do
   end
 
   it "true review card" do
-    review_translation("Home", "Правильно")
+    visit root_path
+    fill_in :user_input, with:"Home"
+    click_button "Проверить"
+    expect(page).to have_content("Правильно")
   end
 
   it "false review card" do
-    review_translation("Doom", "Неправильно")
+    visit root_path
+    fill_in :user_input, with:"Doom"
+    click_button "Проверить"
+    expect(page).to have_content("Неправильно")
   end
 end
 
