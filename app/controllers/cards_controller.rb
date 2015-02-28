@@ -5,7 +5,7 @@ class CardsController < ApplicationController
   end
 
   def index
-    @cards = Card.all
+    @cards = current_user.cards
   end
 
   def new
@@ -13,7 +13,7 @@ class CardsController < ApplicationController
   end
 
   def create
-    @card = Card.new(card_params)
+    @card = current_user.cards.new(card_params)
     if @card.save
       redirect_to @card, notice: "Карточка создана."
     else
@@ -25,6 +25,11 @@ class CardsController < ApplicationController
   end
 
   def update
+    if @card.update_attributes(card_params)
+      redirect_to @card, notice: "Карточка изменена."
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -39,6 +44,6 @@ class CardsController < ApplicationController
   end
 
   def set_card
-    @card = Card.find(params[:id])
+    @card = current_user.cards.find(params[:id])
   end
 end

@@ -1,18 +1,8 @@
-%h4 Первый в мире удобный менеджер флеш-катрочек. Именно так
-%br/
-- flash.each do |name, msg|
-  = content_tag :div, msg, class: "alert alert-#{name}"
-- if @card.present?
-  %div
-    .panel.panel-default
-      .panel-heading Карточка
-      .panel-body
-        %p
-          %b
-            %em Перевод: 
-          = @card.translated_text
-        %hr
-        = render 'form'
-- else
-  .alert.alert-warning
-    %p У вас нет ни одной карточки для просмотра
+.jumbotron{style: "margin-top: 20px"}
+  .h1 Первый в мире удобный менеджер флеш-катрочек. Именно так
+  %br/
+  %p.text-center
+    = link_to "Регистрация", new_user_path, class: 'btn btn-large btn-primary'
+    = link_to "Вход", login_path, class: 'btn btn-large btn-primary'
+
+

@@ -1,0 +1,13 @@
+%h1 Вход
+= link_to 'Login with Twitter', auth_at_provider_path(:provider => :twitter)
+= form_tag sessions_path, class: "form-horizontal", method: "post" do
+  %fieldset 
+    .form-group
+      .col-lg-12
+        %label.control-label Email
+        = text_field_tag :email ,"", class: "form-control"
+        %label.control-label Пароль
+        = password_field_tag :password ,"", class: "form-control"
+        %br/
+      .col-lg-12
+        = submit_tag "Вход", class: "btn btn-default"
