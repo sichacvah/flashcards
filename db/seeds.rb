@@ -3,7 +3,7 @@ require "nokogiri"
 
 User.delete_all
 
-user = User(email: "email@email.com", password: "password")
+user = User.create(email: "email@email.com", password: "password")
 URL = "http://masterrussian.com/vocabulary/most_common_words.htm"
 ORIGINAL_COL = 2
 TRANSLATED_COL = 3
