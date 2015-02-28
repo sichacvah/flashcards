@@ -2,7 +2,8 @@ require "rails_helper"
 
 describe Card do
   before do
-    @card = Card.create(translated_text: "text", original_text: "текст")
+    user = create(:user, email: "email@email.com", password: "****")
+    @card = user.cards.create(translated_text: "text", original_text: "текст")
   end
 
   subject { @card }
