@@ -11,5 +11,5 @@ Rails.application.routes.draw do
   get "login" => "sessions#new"
   get "review" => "review#index"
   put "review_card" => "review#review_card"
-  post 'logout' => 'sessions#destroy', :as => :logout
+  post "logout" => "sessions#destroy", :as => :logout
 end
