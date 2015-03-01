@@ -5,7 +5,7 @@ require "support/login"
 describe "the review card process" do
   before do
     user = create(:user, email: "email@email.com", password: "****",
-      password_confirmation: "****")
+                         password_confirmation: "****")
     card = user.cards.create(original_text: "Home", translated_text: "Дом")
     card.update_attribute :review_date, Date.today
     login "email@email.com", "****"
