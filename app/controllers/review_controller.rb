@@ -19,4 +19,3 @@ class ReviewController < ApplicationController
     params.permit(:card_id, :user_input)
   end
 end
-
