@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  skip_before_filter :require_login, except: [:destroy]
+  skip_before_action :require_login, except: [:destroy]
 
   def new
     @user = User.new
@@ -7,16 +7,16 @@ class SessionsController < ApplicationController
 
   def create
     if @user = login(session_params[:email], session_params[:password])
-      redirect_to review_path, notice: "Logged in!"
+      redirect_to review_path, notice: "Вход выполнен!"
     else
-      flash.now[:alert] = 'Login failed'
-      render action: 'new'
+      flash.now[:alert] = "Вход не удался"
+      render "new"
     end
   end
 
   def destroy
     logout
-    redirect_to root_url, notice: "Logged out!"
+    redirect_to root_url, notice: "Выход выполнен!"
   end
 
   private

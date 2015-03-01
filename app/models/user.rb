@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   has_many :cards, dependent: :destroy
+  has_many :authentications, dependent: :destroy
+  accepts_nested_attributes_for :authentications
 
   validates :password,                presence: true, confirmation: true, length: { minimum: 3}
   validates :email,                   presence: true, uniqueness: true
@@ -8,7 +10,5 @@ class User < ActiveRecord::Base
   authenticates_with_sorcery! do |config|
     config.authentications_class = Authentication
   end
-  has_many :authentications, :dependent => :destroy
-  accepts_nested_attributes_for :authentications
 
 end

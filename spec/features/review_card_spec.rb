@@ -1,19 +1,13 @@
 require "rails_helper"
+require "support/login"
 
-def login
-  visit root_path
-  click_link "Вход"
-  fill_in :email, with: "email@email.com"
-  fill_in :password, with: "****"
-  click_button "Вход"
-end
 
 describe "the review card process" do
   before do
     user = create(:user, email: "email@email.com", password: "****", password_confirmation: "****")
     card = user.cards.create(original_text: "Home", translated_text: "Дом")
     card.update_attribute :review_date, Date.today
-    login
+    login "email@email.com", "****"
   end
 
   it "true review card" do
@@ -35,7 +29,7 @@ describe "no cards" do
 
   before do
     user = create(:user, email: "email@email.com", password: "****", password_confirmation: "****")
-    login
+    login "email@email.com", "****"
   end
   it "no cards" do
     visit review_path

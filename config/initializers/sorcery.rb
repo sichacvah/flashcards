@@ -9,9 +9,9 @@ Rails.application.config.sorcery.configure do |config|
 
   config.external_providers = [:twitter]
 
-  config.twitter.key = "L8qq9PZyRg6ieKGEKhZolGC0vJWLw8iEJ88DRdyOg"
-  config.twitter.secret = "L8qq9PZyRg6ieKGEKhZolGC0vJWLw8iEJ88DRdyOg"
-  config.twitter.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=twitter"
+  config.twitter.key = Rails.application.secrets.twitter_key
+  config.twitter.secret = Rails.application.secrets.twitter_secret
+  config.twitter.callback_url = Rails.application.secrets.twitter_callback_url
   config.twitter.user_info_mapping = {:username => "screen_name"}
 
   config.user_config do |user|

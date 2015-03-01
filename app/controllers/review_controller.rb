@@ -1,6 +1,6 @@
 class ReviewController < ApplicationController
   def index
-    set_card
+    @card = Card.cards_for_review.first
   end
 
   def review_card
@@ -14,10 +14,6 @@ class ReviewController < ApplicationController
   end
 
   private
-
-  def set_card
-    @card = Card.cards_for_review.first
-  end
 
   def review_params
     params.permit(:card_id, :user_input)

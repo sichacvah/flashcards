@@ -1,10 +1,9 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update]
-  skip_before_filter :require_login, only: [:index, :new, :create]
+  skip_before_action :require_login, only: [:index, :new, :create]
 
   def index
   end
-
 
   def new
     @user = User.new
@@ -30,8 +29,6 @@ class UsersController < ApplicationController
       render :edit
     end
   end
-
-
 
   private
 
