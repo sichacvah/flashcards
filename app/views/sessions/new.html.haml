@@ -1,5 +1,5 @@
 %h1 Вход
-= link_to 'Login with Twitter', auth_at_provider_path(:provider => :twitter)
+= link_to 'Login with Twitter', auth_at_provider_path(provider: :twitter)
 = form_tag sessions_path, class: "form-horizontal", method: "post" do
   %fieldset 
     .form-group
