@@ -8,4 +8,3 @@ class SorceryExternal < ActiveRecord::Migration
     end
   end
 end
-

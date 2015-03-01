@@ -4,7 +4,8 @@ require "support/login"
 
 describe "the review card process" do
   before do
-    user = create(:user, email: "email@email.com", password: "****", password_confirmation: "****")
+    user = create(:user, email: "email@email.com", password: "****",
+      password_confirmation: "****")
     card = user.cards.create(original_text: "Home", translated_text: "Дом")
     card.update_attribute :review_date, Date.today
     login "email@email.com", "****"
@@ -26,9 +27,9 @@ describe "the review card process" do
 end
 
 describe "no cards" do
-
   before do
-    user = create(:user, email: "email@email.com", password: "****", password_confirmation: "****")
+    user = create(:user, email: "email@email.com", password: "****",
+      password_confirmation: "****")
     login "email@email.com", "****"
   end
   it "no cards" do

@@ -7,7 +7,7 @@ class OauthsController < ApplicationController
   def callback
     provider = auth_params[:provider]
     if @user = login_from(auth_params[:provider])
-      redirect_to(review_path, 
+      redirect_to(review_path,
                   notice: "Logged in from #{provider.titleize}!")
     else
       begin
@@ -29,3 +29,4 @@ class OauthsController < ApplicationController
     params.permit(:code, :provider)
   end
 end
+
