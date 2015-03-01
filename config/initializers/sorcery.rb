@@ -2,7 +2,6 @@ Rails.application.config.sorcery.submodules = [:external]
 
 # Here you can configure each submodule's features.
 Rails.application.config.sorcery.configure do |config|
-
   config.external_providers = [:twitter]
 
   config.twitter.key = Rails.application.secrets.twitter_key
