@@ -5,10 +5,6 @@ Rails.application.config.sorcery.configure do |config|
 
   config.external_providers = [:twitter]
 
-
-  puts 1
-  p Rails.application.secrets.twitter_callback_url
-
   config.twitter.key = Rails.application.secrets.twitter_key
   config.twitter.secret = Rails.application.secrets.twitter_secret
   config.twitter.callback_url = Rails.application.secrets.twitter_callback_url
