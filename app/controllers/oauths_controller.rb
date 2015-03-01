@@ -14,7 +14,7 @@ class OauthsController < ApplicationController
         @user = create_from(provider)
         reset_session
         auto_login(@user)
-        redirect_to(review_path, 
+        redirect_to(review_path,
                     notice: "Logged in from #{provider.titleize}!")
       rescue
         redirect_to(review_path,
