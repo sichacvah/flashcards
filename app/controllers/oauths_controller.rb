@@ -1,5 +1,6 @@
 class OauthsController < ApplicationController
   skip_before_action :require_login
+
   def oauth
     login_at(auth_params[:provider])
   end
@@ -29,4 +30,3 @@ class OauthsController < ApplicationController
     params.permit(:code, :provider)
   end
 end
-
