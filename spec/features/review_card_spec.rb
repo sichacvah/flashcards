@@ -29,7 +29,7 @@ end
 describe "no cards" do
   before do
     user = create(:user, email: "email@email.com", password: "****",
-      password_confirmation: "****")
+                         password_confirmation: "****")
     login "email@email.com", "****"
   end
   it "no cards" do
