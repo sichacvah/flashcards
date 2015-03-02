@@ -1,8 +1,6 @@
 class Card < ActiveRecord::Base
   has_attached_file :image, styles: { medium: "300x300>" }
-  # has_attached_file :download,
-  #                    storage: :s3,
-  #                    s3_credentials: Proc.new{|a| a.instanace}
+
   belongs_to :user
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
   validates :original_text, :translated_text, :review_date, :user,
@@ -14,9 +12,6 @@ class Card < ActiveRecord::Base
     where("review_date <= ?", Date.today).order("RANDOM()")
   }
 
-  # def s3_credentials
-  #   {bucket: 'sichacvah', access_key_id: ENV["AWS_ACCESS_KEY_ID"], access_secret_key: ENV["AWS_SECRET_KEY_ID"]}
-  # end
 
   def check_translation(user_input)
     if prepare_word(user_input) == prepare_word(original_text)
