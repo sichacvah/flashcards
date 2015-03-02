@@ -1,5 +1,7 @@
 class Card < ActiveRecord::Base
+  has_attached_file :image, :styles => { medium: "300x300>"}, default_url: "/images/:style/missing.png"
   belongs_to :user
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
   validates :original_text, :translated_text, :review_date, :user,
             presence: true
   validate :words_equal?

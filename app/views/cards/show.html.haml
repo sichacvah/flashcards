@@ -5,6 +5,8 @@
 .panel.panel-default
   .panel-heading Карточка
   .panel-body
+    %div.text-center
+      = image_tag @card.image.url(:medium)
     %p
       %b
         %em Оргинальный текст: 
@@ -12,7 +14,7 @@
     %hr
     %p
       %b
-        %em Перевод: 
+        %em Перевод:
       = @card.translated_text
     %h6.text-right
       %em= @card.review_date.strftime("%d/%m/%Y")
