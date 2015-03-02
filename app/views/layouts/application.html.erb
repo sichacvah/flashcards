@@ -20,8 +20,12 @@
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to "Все карточки", cards_path(@cards)%></li>
-          <li><%= link_to "Добавить карточку", new_card_path%></li>
+          <% if current_user %>
+            <li><%= link_to "Все карточки", cards_path(@cards) %></li>
+            <li><%= link_to "Добавить карточку", new_card_path %></li>
+            <li><%= link_to "Аккаунт", edit_user_path(current_user) %></li>
+            <li><%= link_to "Выход", :logout, method: :post %></li>
+          <% end %>
         </ul>
       </div>
     </div>

@@ -1,10 +1,14 @@
 source 'https://rubygems.org'
 
-
-
 gem 'rails', '4.2.0'
 
+gem 'sorcery', '~> 0.9.0'
+
+gem 'figaro'
+
 gem 'pg'
+
+gem 'oauth2', '~> 1.0.0'
 
 gem 'sass-rails', '~> 5.0'
 

@@ -1,25 +1,10 @@
 class HomeController < ApplicationController
+  skip_before_action :require_login, only: [:index]
+
   def index
-    set_card
-  end
-
-  def review_card
-    @card = Card.find(review_params[:card_id])
-    if @card.check_translation review_params[:user_input]
-      flash[:success] = "Правильно"
-    else
-      flash[:danger] = "Неправильно"
+    if current_user
+      redirect_to review_path
     end
-    redirect_to root_url
   end
 
-  private
-
-  def set_card
-    @card = Card.cards_for_review.first
-  end
-
-  def review_params
-    params.permit(:card_id, :user_input)
-  end
 end
