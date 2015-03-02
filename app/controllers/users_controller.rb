@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :update]
   skip_before_action :require_login, only: [:index, :new, :create]
 
   def index
@@ -23,7 +22,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update_attributes(user_params)
+    if current_user.update_attributes(user_params)
       redirect_to review_path, notice: "Акканут изменён."
     else
       render :edit
@@ -31,10 +30,6 @@ class UsersController < ApplicationController
   end
 
   private
-
-  def set_user
-    @user = current_user
-  end
 
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation)

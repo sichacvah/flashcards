@@ -9,6 +9,7 @@ Rails.application.config.sorcery.configure do |config|
   config.twitter.callback_url = Rails.application.secrets.twitter_callback_url
   config.twitter.user_info_mapping = { username: "screen_name" }
 
+
   config.user_config do |user|
     user.authentications_class = Authentication
   end

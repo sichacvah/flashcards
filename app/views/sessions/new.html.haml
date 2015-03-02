@@ -2,6 +2,7 @@
 %p= flash[:notice]
 %p= flash[:alert]
 = link_to 'Login with Twitter', auth_at_provider_path(provider: :twitter)
+/ = link_to 'Login with Facebook', auth_at_provider_path(provider::facebook)
 = form_tag sessions_path, class: "form-horizontal", method: "post" do
   %fieldset 
     .form-group

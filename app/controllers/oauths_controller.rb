@@ -17,9 +17,6 @@ class OauthsController < ApplicationController
         auto_login(@user)
         redirect_to(review_path,
                     notice: "Logged in from #{provider.titleize}!")
-      rescue
-        redirect_to(review_path,
-                    alert: "Failed to login from #{provider.titleize}!")
       end
     end
   end
@@ -27,6 +24,6 @@ class OauthsController < ApplicationController
   private
 
   def auth_params
-    params.permit(:code, :provider)
+    params.permit(:oauth_verifier, :oauth_token, :provider)
   end
 end
