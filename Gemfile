@@ -6,6 +6,8 @@ gem "paperclip"
 
 gem 'sorcery', '~> 0.9.0'
 
+gem 'aws-sdk', '< 2.0'
+
 gem 'figaro'
 
 gem 'pg'
