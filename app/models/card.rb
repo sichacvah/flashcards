@@ -12,7 +12,6 @@ class Card < ActiveRecord::Base
     where("review_date <= ?", Date.today).order("RANDOM()")
   }
 
-
   def check_translation(user_input)
     if prepare_word(user_input) == prepare_word(original_text)
       update_attribute(:review_date, review_date + 3.days)
