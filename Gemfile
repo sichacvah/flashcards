@@ -2,7 +2,11 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.0'
 
+gem "paperclip"
+
 gem 'sorcery', '~> 0.9.0'
+
+gem 'aws-sdk', '< 2.0'
 
 gem 'figaro'
 

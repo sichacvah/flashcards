@@ -6,6 +6,8 @@
     .panel.panel-default
       .panel-heading Карточка
       .panel-body
+        %div.text-center
+          = image_tag @card.image.url(:medium)
         %p
           %b
             %em Перевод: 
