@@ -21,10 +21,6 @@ class DecksController < ApplicationController
     end
   end
 
-  def edit
-  end
-
-
   def update
     @deck = Deck.find(params[:id])
     if @deck.update_attribute(:current, !@deck.current)
@@ -45,5 +41,4 @@ class DecksController < ApplicationController
   def deck_params
     params.require(:deck).permit(:name, :current)
   end
-
 end

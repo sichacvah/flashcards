@@ -17,7 +17,9 @@ rows.each do |row|
   cols = row.css("td")
   original_text = cols[ORIGINAL_COL].text
   translated_text = cols[TRANSLATED_COL].text
-  deck.cards.create! original_text: original_text, translated_text: translated_text, user_id: user.id
+  deck.cards.create! original_text: original_text, 
+                     translated_text: translated_text, 
+                     user_id: user.id
 end
 
 logger = Logger.new(STDOUT)
