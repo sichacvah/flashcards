@@ -1,15 +1,16 @@
 require "rails_helper"
 require "support/login"
 
-
-
 describe "the review card process" do
   before do
     User.destroy_all
-    user = create(:user, email: "email@email.com", password: "****",
+    user = create(:user, email: "email@email.com",
+                         password: "****",
                          password_confirmation: "****")
-    deck = user.decks.create(name: "Cats") 
-    card = deck.cards.create(original_text: "Home", translated_text: "Дом", user_id: user.id)
+    deck = user.decks.create(name: "Cats")
+    card = deck.cards.create(original_text: "Home",
+                             translated_text: "Дом",
+                             user_id: user.id)
     card.update_attribute :review_date, Date.today
     login "email@email.com", "****"
   end

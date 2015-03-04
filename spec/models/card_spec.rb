@@ -28,7 +28,10 @@ describe Card do
 
   describe "not empty" do
     before do
-      @card = User.first.decks.first.cards.create(translated_text: "text", original_text: "текст", user_id: User.first.id)
+      @card = User.first.decks.first.cards.create(
+        translated_text: "text",
+        original_text: "текст",
+        user_id: User.first.id)
       @card.update_attribute(:review_date, Date.today)
     end
     it { expect(Card.cards_for_review.first).to be_valid }
