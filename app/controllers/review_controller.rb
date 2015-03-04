@@ -1,6 +1,10 @@
 class ReviewController < ApplicationController
   def index
-    @card = Card.cards_for_review.first
+    if deck = current_user.decks.get_current.first
+      @card = deck.cards.cards_for_review.first
+    else
+      @card = current_user.cards.cards_for_review.first
+    end
   end
 
   def review_card

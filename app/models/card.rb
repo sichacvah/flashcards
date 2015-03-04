@@ -2,8 +2,9 @@ class Card < ActiveRecord::Base
   has_attached_file :image, styles: { medium: "300x300>" }
 
   belongs_to :user
+  belongs_to :deck
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
-  validates :original_text, :translated_text, :review_date, :user,
+  validates :original_text, :translated_text, :review_date, :deck, :user,
             presence: true
   validate :words_equal?
   before_validation :set_review_date, if: :new_record?

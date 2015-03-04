@@ -1,4 +1,4 @@
-%h1 Ваши карточки:
+%h1= "#{@deck.name.titleize}"
 %table.table.table-striped.table-hover
   %thead
     %tr
@@ -14,6 +14,9 @@
         %td= card.original_text
         %td= card.translated_text
         %td= card.review_date.strftime("%d/%m/%Y")
-        %td= link_to "Просмотреть", card_path(card)
-        %td= link_to "Удалить", card_path(card), method: :delete, data: { confirm: "Вы уверены?" }
-        %td= link_to "Редактировать", edit_card_path(card)
+        %td= link_to "Просмотреть", deck_card_path(@deck, card)
+        %td= link_to "Удалить", deck_card_path(@deck, card), method: :delete, data: { confirm: "Вы уверены?" }
+        %td= link_to "Редактировать", edit_deck_card_path(@deck, card)
+
+%p.text-right
+  = link_to "Добавить карточку", new_deck_card_path(@deck, @user), class: "btn btn-primary"
