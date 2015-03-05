@@ -35,7 +35,7 @@ class DecksController < ApplicationController
   end
 
   def set_current
-    if current_user.update_attributes!(current_deck_id: @deck.id)
+    if current_user.update_attributes(current_deck_id: @deck.id)
       redirect_to decks_path, notice: "Текущая колода изменена."
     else
       redirect_to decks_path, notice: "Ошибка."

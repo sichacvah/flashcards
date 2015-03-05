@@ -6,14 +6,10 @@ class User < ActiveRecord::Base
 
   validates :password, presence: true, confirmation: true,
                        length: { minimum: 3 },
-                       unless: :with_authentications
+                       on: :not_authentications
   validates :email, presence: true, uniqueness: true
-  validates :password_confirmation, presence: true, unless: :with_authentications
+  validates :password_confirmation, presence: true, on: :not_authentications
   authenticates_with_sorcery! do |config|
     config.authentications_class = Authentication
-  end
-
-  def with_authentications
-    authentications.present?
   end
 end
