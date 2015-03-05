@@ -1,4 +1,5 @@
 class DecksController < ApplicationController
+  before_action :set_deck, only: [:update, :create, :destroy, :edit, :set_current]
   def index
     @decks = current_user.decks.all
   end
@@ -9,11 +10,10 @@ class DecksController < ApplicationController
   end
 
   def new
-    @deck = Deck.new
+    @deck = current_user.decks.new
   end
 
   def create
-    @deck = current_user.decks.new(deck_params)
     if @deck.save
       redirect_to @deck, notice: "Колода создана."
     else
@@ -21,10 +21,19 @@ class DecksController < ApplicationController
     end
   end
 
+  def edit
+  end
+
   def update
-    @deck = Deck.find(params[:id])
-    if @deck.update_attribute(:current, !@deck.current)
-      @deck.falsify_all_others
+    if @deck.update_attributes(deck_params)
+      redirect_to deck_path, notice: "Карточка изменена."
+    else
+      render :edit
+    end
+  end
+
+  def set_current
+    if current_user.update_attribute(:current_deck_id, @deck.id)
       redirect_to decks_path, notice: "Текущая колода изменена."
     else
       redirect_to decks_path, notice: "Ошибка."
@@ -32,11 +41,15 @@ class DecksController < ApplicationController
   end
 
   def destroy
-    @deck = Deck.find(params[:id]).destroy
+    @deck = current_user.decks.find(params[:id]).destroy
     redirect_to decks_path
   end
 
   protected
+
+  def set_deck
+    @deck = current_user.decks.find(params[:id])
+  end
 
   def deck_params
     params.require(:deck).permit(:name, :current)

@@ -10,13 +10,14 @@
         .panel-heading
           .h3.panel-title
             %em= "#{deck.name}"
-            - if deck.current
+            - if deck.id == current_user.current_deck_id
               %span - Текущая Колода
         .panel-body
 
           %p.text-right
-            - unless deck.current
-              = link_to "Сделать текущей", deck_path(deck), method: :put
+            - unless deck.id == current_user.current_deck_id
+              = link_to "Сделать текущей", set_current_deck_path(deck), method: :put
             = link_to "Посмотреть", deck_cards_path(deck)
+            = link_to "Редактировать", edit_deck_path(deck)
             = link_to "Удалить", deck_path(deck), method: :delete, data: { confirm: "Вы уверены?" }
 

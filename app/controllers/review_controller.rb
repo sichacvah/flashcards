@@ -1,7 +1,8 @@
 class ReviewController < ApplicationController
   def index
-    if deck = current_user.decks.get_current.first
-      @card = deck.cards.cards_for_review.first
+    current_deck = current_user.current_deck_id
+    unless current_deck.nil?
+      @card = current_user.decks.find(current_deck).cards.cards_for_review.first
     else
       @card = current_user.cards.cards_for_review.first
     end

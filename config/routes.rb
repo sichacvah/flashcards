@@ -8,11 +8,14 @@ Rails.application.routes.draw do
 
   get "login" => "sessions#new"
   put "review_card" => "review#review_card"
-  post "logout" => "sessions#destroy", as: :logout
+  post "logout" => "sessions#destroy", as: :logout 
 
   resources :sessions
   resources :users
   resources :decks do
     resources :cards
+    member do
+      put 'set_current', action: :set_current
+    end
   end
 end
