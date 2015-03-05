@@ -1,5 +1,6 @@
 class DecksController < ApplicationController
-  before_action :set_deck, only: [:update, :create, :destroy, :edit, :set_current]
+  before_action :set_deck,
+                only: [:update, :create, :destroy, :edit, :set_current]
   def index
     @decks = current_user.decks.all
   end
