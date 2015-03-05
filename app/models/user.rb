@@ -14,6 +14,6 @@ class User < ActiveRecord::Base
   end
 
   def with_authentications
-    self.authentications.present?
+    authentications.present?
   end
 end
