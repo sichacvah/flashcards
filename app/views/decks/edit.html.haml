@@ -1,5 +1,3 @@
 %h1 Изменить Колоду
 
-= simple_form_for @deck, html: { class: 'form-horizontal' } do |f|
-  = f.input :name, hint: false, label: 'Название колоды'
-  = f.button :submit
+=render 'form'

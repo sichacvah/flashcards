@@ -5,11 +5,15 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :authentications
 
   validates :password, presence: true, confirmation: true,
-                       length: { minimum: 3 }
+                       length: { minimum: 3 },
+                       unless: :with_authentications
   validates :email, presence: true, uniqueness: true
-  validates :password_confirmation, presence: true
-
+  validates :password_confirmation, presence: true, unless: :with_authentications
   authenticates_with_sorcery! do |config|
     config.authentications_class = Authentication
+  end
+
+  def with_authentications
+    self.authentications.present?
   end
 end

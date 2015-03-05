@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :decks do
     resources :cards
     member do
-      put "set_current", action: :set_current
+      put "set_current"
     end
   end
 end

@@ -9,7 +9,7 @@ class Card < ActiveRecord::Base
   validate :words_equal?
   before_validation :set_review_date, if: :new_record?
 
-  scope :cards_for_review, -> {
+  scope :for_review, -> {
     where("review_date <= ?", Date.today).order("RANDOM()")
   }
 
@@ -24,7 +24,7 @@ class Card < ActiveRecord::Base
   protected
 
   def set_review_date
-    self.review_date = Date.today - 3.days
+    self.review_date = Date.today + 3.days
   end
 
   def prepare_word(word)
