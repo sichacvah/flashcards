@@ -1,9 +1,12 @@
 require "rails_helper"
 require "support/login"
+require 'database_cleaner'
+
+DatabaseCleaner.strategy = :truncation
 
 describe "the review card process" do
   before do
-    User.destroy_all
+    DatabaseCleaner.clean
     user = create(:user, email: "email@email.com",
                          password: "****",
                          password_confirmation: "****")
@@ -32,7 +35,7 @@ end
 
 describe "no cards" do
   before do
-    User.destroy_all
+    DatabaseCleaner.clean
     user = create(:user, email: "email@email.com", password: "****",
                          password_confirmation: "****")
     login "email@email.com", "****"

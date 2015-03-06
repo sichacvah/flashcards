@@ -12,4 +12,6 @@ class User < ActiveRecord::Base
   authenticates_with_sorcery! do |config|
     config.authentications_class = Authentication
   end
+
+  belongs_to :current_deck
 end

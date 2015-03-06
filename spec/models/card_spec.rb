@@ -1,8 +1,11 @@
 require "rails_helper"
+require 'database_cleaner'
+
+DatabaseCleaner.strategy = :truncation
 
 describe Card do
   before do
-    User.destroy_all
+    DatabaseCleaner.clean
     user = create(:user, email: "email@email.com", password: "****",
                          password_confirmation: "****")
     deck = user.decks.create(name: "Cat")

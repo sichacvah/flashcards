@@ -14,8 +14,7 @@ class CardsController < ApplicationController
   end
 
   def create
-    @card = @deck.cards.new(card_params)
-    @card.user_id = current_user.id
+    @card = @deck.cards.new(card_params.merge(user_id: current_user.id))
     if @card.save
       redirect_to [@deck, @card], notice: "Карточка создана."
     else

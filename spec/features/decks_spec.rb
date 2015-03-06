@@ -1,9 +1,12 @@
 require "rails_helper"
 require "support/login"
+require 'database_cleaner'
+
+DatabaseCleaner.strategy = :truncation
 
 describe "the deck card process" do
   before do
-    User.destroy_all
+    DatabaseCleaner.clean
     @user = create(:user, email: "email@email.com",
                           password: "****",
                           password_confirmation: "****")
@@ -18,7 +21,7 @@ describe "the deck card process" do
     visit new_deck_path
     expect(page).to have_content("Новая колода")
     fill_in :deck_name, with: "Cats"
-    click_button "Save Deck"
+    click_button "Create Deck"
     expect(page).to have_content("Cats")
   end
 
