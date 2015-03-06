@@ -34,9 +34,9 @@ gem 'simple_form'
 
 gem 'nokogiri'
 
-gem 'database_cleaner', '~> 1.4.0'
-
 group :development, :test do
+
+  gem 'database_cleaner', '~> 1.4.0'
 
   gem 'byebug'
 

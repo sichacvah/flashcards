@@ -1,6 +1,12 @@
 class DecksController < ApplicationController
   before_action :set_deck, only: [:show, :update, :destroy, :edit, :set_current]
 
+  helper_method :current_deck
+
+  def current_deck
+    @current_deck ||= current_user.decks.find_by_id(current_user.current_deck_id)
+  end
+
   def index
     @decks = current_user.decks.all
   end

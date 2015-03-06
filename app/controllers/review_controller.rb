@@ -1,10 +1,10 @@
-class ReviewController < ApplicationController
-  helper_method :current_deck
+class ReviewController < DecksController
+
   def index
-    if current_deck.nil?
-      @card = current_user.cards.for_review.first
+    @card = if current_deck
+      current_deck.cards.for_review.first
     else
-      @card = current_deck.cards.for_review.first
+      current_user.cards.for_review.first
     end
   end
 
@@ -20,9 +20,6 @@ class ReviewController < ApplicationController
 
   private
 
-  def current_deck
-    @current_deck ||= current_user[:current_deck]
-  end
 
   def review_params
     params.permit(:card_id, :user_input)

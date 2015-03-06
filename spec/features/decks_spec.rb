@@ -19,7 +19,6 @@ describe "the deck card process" do
 
   it "create new deck" do
     visit new_deck_path
-    expect(page).to have_content("Новая колода")
     fill_in :deck_name, with: "Cats"
     click_button "Create Deck"
     expect(page).to have_content("Cats")
