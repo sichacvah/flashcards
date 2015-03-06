@@ -9,8 +9,9 @@ class User < ActiveRecord::Base
                        on: :not_authentications
   validates :email, presence: true, uniqueness: true
   validates :password_confirmation, presence: true, on: :not_authentications
+  belongs_to :current_deck
+
   authenticates_with_sorcery! do |config|
     config.authentications_class = Authentication
   end
-  belongs_to :current_deck
 end
