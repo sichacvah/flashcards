@@ -1,5 +1,5 @@
 class DecksController < ApplicationController
-  before_action :set_deck, only: [ :update, :destroy, :edit, :set_current]
+  before_action :set_deck, only: [:update, :destroy, :edit, :set_current]
 
   helper_method :current_deck
 
@@ -10,7 +10,6 @@ class DecksController < ApplicationController
   def index
     @decks = current_user.decks.all
   end
-
 
   def new
     @deck = current_user.decks.new

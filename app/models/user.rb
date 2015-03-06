@@ -17,6 +17,5 @@ class User < ActiveRecord::Base
 
   def current_deck
     decks.find_by_id(current_deck_id)
-    
   end
 end
