@@ -1,6 +1,6 @@
 require "rails_helper"
 require "support/login"
-require 'database_cleaner'
+require "database_cleaner"
 
 DatabaseCleaner.strategy = :truncation
 
