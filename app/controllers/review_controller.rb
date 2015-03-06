@@ -1,5 +1,4 @@
 class ReviewController < DecksController
-
   def index
     @card = if current_deck
       current_deck.cards.for_review.first
@@ -19,7 +18,6 @@ class ReviewController < DecksController
   end
 
   private
-
 
   def review_params
     params.permit(:card_id, :user_input)
