@@ -1,5 +1,5 @@
 class DecksController < ApplicationController
-  before_action :set_deck, only: [:show, :update, :destroy, :edit, :set_current]
+  before_action :set_deck, only: [ :update, :destroy, :edit, :set_current]
 
   helper_method :current_deck
 
@@ -11,9 +11,6 @@ class DecksController < ApplicationController
     @decks = current_user.decks.all
   end
 
-  def show
-    redirect_to deck_cards_path(@deck)
-  end
 
   def new
     @deck = current_user.decks.new
@@ -22,7 +19,7 @@ class DecksController < ApplicationController
   def create
     @deck = current_user.decks.new(deck_params)
     if @deck.save
-      redirect_to @deck, notice: "Колода создана."
+      redirect_to deck_cards_path(@deck), notice: "Колода создана."
     else
       render :new
     end
