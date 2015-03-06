@@ -21,7 +21,7 @@ class ReviewController < ApplicationController
   private
 
   def current_deck
-    @current_deck ||= Deck.find_by_id(current_user.current_deck_id)
+    @current_deck ||= current_user.current_deck_id
   end
 
   def review_params
