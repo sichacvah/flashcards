@@ -4,7 +4,7 @@ class DecksController < ApplicationController
   helper_method :current_deck
 
   def current_deck
-    @current_deck ||= current_user.decks.find_by_id(current_user.current_deck_id)
+    @current_deck ||= current_user.current_deck
   end
 
   def index

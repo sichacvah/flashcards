@@ -1,9 +1,9 @@
 class ReviewController < DecksController
   def index
     @card = if current_deck
-      current_deck.cards.for_review.first
-    else
-      current_user.cards.for_review.first
+              current_deck.cards.for_review.first
+            else
+              current_user.cards.for_review.first
     end
   end
 

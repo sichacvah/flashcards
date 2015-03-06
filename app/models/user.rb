@@ -14,4 +14,9 @@ class User < ActiveRecord::Base
   authenticates_with_sorcery! do |config|
     config.authentications_class = Authentication
   end
+
+  def current_deck
+    decks.find_by_id(current_deck_id)
+    
+  end
 end
