@@ -12,7 +12,7 @@ class OauthsController < ApplicationController
                   notice: "Logged in from #{provider.titleize}!")
     else
       begin
-        @user = create(provider)
+        @user = create_from(provider)
         reset_session
         auto_login(@user)
         redirect_to(review_path,

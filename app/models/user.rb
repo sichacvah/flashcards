@@ -9,13 +9,9 @@ class User < ActiveRecord::Base
                        on: :not_authentications
   validates :email, presence: true, uniqueness: true
   validates :password_confirmation, presence: true, on: :not_authentications
-  belongs_to :current_deck
+  belongs_to :current_deck, class_name: "Deck", foreign_key: "current_deck_id"
 
   authenticates_with_sorcery! do |config|
     config.authentications_class = Authentication
-  end
-
-  def current_deck
-    decks.find_by_id(current_deck_id)
   end
 end

@@ -5,6 +5,12 @@ class ApplicationController < ActionController::Base
 
   before_action :require_login, except: [:not_authenticated]
 
+  helper_method :current_deck
+
+  def current_deck
+    @current_deck ||= current_user.current_deck
+  end
+
   protected
 
   def not_authenticated

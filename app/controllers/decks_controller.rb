@@ -1,12 +1,6 @@
 class DecksController < ApplicationController
   before_action :set_deck, only: [:update, :destroy, :edit, :set_current]
 
-  helper_method :current_deck
-
-  def current_deck
-    @current_deck ||= current_user.current_deck
-  end
-
   def index
     @decks = current_user.decks.all
   end
@@ -36,7 +30,7 @@ class DecksController < ApplicationController
   end
 
   def set_current
-    if current_user.update_attributes(current_deck_id: @deck.id)
+    if current_user.update_attributes!(current_deck_id: @deck.id)
       redirect_to decks_path, notice: "Текущая колода изменена."
     else
       redirect_to decks_path, notice: "Ошибка."
