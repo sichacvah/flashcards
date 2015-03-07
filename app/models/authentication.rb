@@ -1,3 +1,3 @@
 class Authentication < ActiveRecord::Base
-  belongs_to :user, foreign_key: "authentication"
+  belongs_to :user
 end

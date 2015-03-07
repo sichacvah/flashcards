@@ -23,7 +23,7 @@
           <% if current_user %>
             <li><%= link_to "Все колоды", decks_path %></li>
             <li><%= link_to "Добавить колоду", new_deck_path %></li>
-            <li><%= link_to "Аккаунт", edit_user_path(current_user) %></li>
+            <li><%= link_to "Аккаунт", edit_profile_path(current_user) %></li>
             <li><%= link_to "Выход", :logout, method: :post %></li>
           <% end %>
         </ul>

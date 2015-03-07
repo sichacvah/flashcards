@@ -10,8 +10,9 @@ Rails.application.routes.draw do
   put "review_card" => "review#review_card"
   post "logout" => "sessions#destroy", as: :logout
 
+  resources :profile, only: [:edit, :update]
+  resources :registration, only: [:new, :create]
   resources :sessions
-  resources :users
   resources :decks do
     resources :cards
     member do

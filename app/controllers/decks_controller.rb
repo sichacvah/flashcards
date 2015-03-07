@@ -30,7 +30,7 @@ class DecksController < ApplicationController
   end
 
   def set_current
-    if current_user.update_attributes!(current_deck_id: @deck.id)
+    if current_user.update_attributes(current_deck_id: @deck.id)
       redirect_to decks_path, notice: "Текущая колода изменена."
     else
       redirect_to decks_path, notice: "Ошибка."
@@ -38,7 +38,7 @@ class DecksController < ApplicationController
   end
 
   def destroy
-    @deck = current_user.decks.find(params[:id]).destroy
+    @deck.destroy
     redirect_to decks_path
   end
 
@@ -49,6 +49,6 @@ class DecksController < ApplicationController
   end
 
   def deck_params
-    params.require(:deck).permit(:name, :current)
+    params.require(:deck).permit(:name)
   end
 end
