@@ -64,8 +64,10 @@ class Card < ActiveRecord::Base
 
   def words_equal?
     if prepare_word(original_text) == prepare_word(translated_text)
-      errors.add(:original_text, "оригинальный текст не может быть таким же как и перевод")
-      errors.add(:translated_text, "оригинальный текст не может быть таким же как и перевод")
+      errors.add(:original_text,
+                 "оригинальный текст не может быть таким же как и перевод")
+      errors.add(:translated_text,
+                 "оригинальный текст не может быть таким же как и перевод")
     end
   end
 end
