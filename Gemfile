@@ -34,8 +34,6 @@ gem 'simple_form'
 
 gem 'nokogiri'
 
-gem 'rails_12factor', group: :production
-
 group :development, :test do
 
   gem 'database_cleaner', '~> 1.4.0'
