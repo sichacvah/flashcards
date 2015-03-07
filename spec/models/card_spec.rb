@@ -21,7 +21,7 @@ describe Card do
   end
 
   describe "is valid first check translation" do
-    it { expect(@card.check_translation("текст")).to be true
+    it { expect(@card.check_translation("текст")).to be true }
     it do
       expect(@card[:review_date]).to eq(Time.now + 12.hours)
     end
