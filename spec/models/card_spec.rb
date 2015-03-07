@@ -4,8 +4,8 @@ require "database_cleaner"
 DatabaseCleaner.strategy = :truncation
 
 describe Card do
+  DatabaseCleaner.clean
   before do
-    DatabaseCleaner.clean
     user = create(:user, email: "email@email.com", password: "****",
                          password_confirmation: "****")
     deck = user.decks.create(name: "Cat")
@@ -15,14 +15,37 @@ describe Card do
   subject { @card }
 
   describe "has true data in model" do
-    it { expect(@card.review_date).to eq(Date.today + 3.days) }
+    it { expect(@card.review_date.to_i).to eq(Time.now.to_i) }
     it { expect(@card.translated_text).to eq("text") }
     it { expect(@card.original_text).to eq("текст") }
   end
 
-  describe "is valid check translation" do
+  describe "is valid first check translation" do
     it { expect(@card.check_translation("текст")).to be true }
-    it { expect(@card.review_date).to eq(Date.today + 3.days) }
+    it do
+      @card.check_translation("текст")
+      expect(@card[:review_date]).to eq(Time.now + 12.hours) 
+    end
+  end
+
+  describe "is valid second check translation" do
+    it { expect(@card.check_translation("текст")).to be true }
+    it { expect(@card.review_date).to eq(DateTime.current + 3.day) }
+  end
+
+  describe "is valid third check translation" do
+    it { expect(@card.check_translation("текст")).to be true }
+    it { expect(@card.review_date).to eq(DateTime.current + 1.week) }
+  end
+
+  describe "is valid fourth check translation" do
+    it { expect(@card.check_translation("текст")).to be true }
+    it { expect(@card.review_date).to eq(DateTime.current + 2.week) }
+  end
+
+  describe "is valid fifth check translation" do
+    it { expect(@card.check_translation("текст")).to be true }
+    it { expect(@card.review_date).to eq(DateTime.current + 1.month) }
   end
 
   it "is invalid check tranlation" do
