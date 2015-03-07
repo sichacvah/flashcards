@@ -36,7 +36,7 @@ class Card < ActiveRecord::Base
   end
 
   def increase_try_count
-    update_attribute(:try_count, try_count+1)
+    update_attribute(:try_count, try_count + 1)
   end
 
   def increase_review_date
@@ -46,7 +46,7 @@ class Card < ActiveRecord::Base
 
   def increase_true_answer_count
     if true_answer_count < review_config.length - 1
-      update_attribute(:true_answer_count, true_answer_count+1)
+      update_attribute(:true_answer_count, true_answer_count + 1)
     end
   end
 
