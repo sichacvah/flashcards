@@ -6,5 +6,4 @@ class HomeController < ApplicationController
       redirect_to review_path
     end
   end
-
 end

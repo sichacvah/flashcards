@@ -21,6 +21,8 @@
 
 %ul.pager
   %li
-    = link_to "Редактировать", edit_card_path(@card)
+    = link_to "Редактировать", edit_deck_card_path(@deck, @card)
   %li
-    = link_to "Удалить", card_path(@card), method: :delete, data: { confirm: "Вы уверены?" }
+    = link_to "Удалить", deck_card_path(@deck, @card), method: :delete, data: { confirm: "Вы уверены?" }
+  %li
+    = link_to "Назад", deck_cards_path(@deck)

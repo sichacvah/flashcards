@@ -36,6 +36,8 @@ gem 'nokogiri'
 
 group :development, :test do
 
+  gem 'database_cleaner', '~> 1.4.0'
+
   gem 'byebug'
 
   gem 'capybara'

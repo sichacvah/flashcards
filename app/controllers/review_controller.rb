@@ -1,6 +1,6 @@
 class ReviewController < ApplicationController
   def index
-    @card = Card.cards_for_review.first
+    @card = current_user.card_for_review
   end
 
   def review_card

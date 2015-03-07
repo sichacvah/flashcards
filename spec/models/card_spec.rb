@@ -1,10 +1,15 @@
 require "rails_helper"
+require "database_cleaner"
+
+DatabaseCleaner.strategy = :truncation
 
 describe Card do
   before do
+    DatabaseCleaner.clean
     user = create(:user, email: "email@email.com", password: "****",
                          password_confirmation: "****")
-    @card = user.cards.create(translated_text: "text", original_text: "текст")
+    deck = user.decks.create(name: "Cat")
+    @card = deck.cards.create(translated_text: "text", original_text: "текст")
   end
 
   subject { @card }
@@ -26,11 +31,13 @@ describe Card do
 
   describe "not empty" do
     before do
-      Card.create(translated_text: "text", original_text: "текст")
-      @card = Card.first
+      @card = User.first.decks.first.cards.create(
+        translated_text: "text",
+        original_text: "текст",
+        user_id: User.first.id)
       @card.update_attribute(:review_date, Date.today)
     end
-    it { expect(Card.cards_for_review.first).to be_valid }
+    it { expect(Card.for_review.first).to be_valid }
   end
 
   describe "when translated text is not present" do

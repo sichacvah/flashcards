@@ -1,32 +1,30 @@
 class CardsController < ApplicationController
   before_action :set_card, only: [:show, :edit, :update, :destroy]
+  before_action :set_deck
 
   def show
   end
 
   def index
-    @cards = current_user.cards
+    @cards = @deck.cards
   end
 
   def new
-    @card = Card.new
+    @card = @deck.cards.new
   end
 
   def create
-    @card = current_user.cards.new(card_params)
+    @card = @deck.cards.new(card_params.merge(user_id: current_user.id))
     if @card.save
-      redirect_to @card, notice: "Карточка создана."
+      redirect_to [@deck, @card], notice: "Карточка создана."
     else
       render :new
     end
   end
 
-  def edit
-  end
-
   def update
     if @card.update_attributes(card_params)
-      redirect_to @card, notice: "Карточка изменена."
+      redirect_to deck_card_path, notice: "Карточка изменена."
     else
       render :edit
     end
@@ -34,7 +32,7 @@ class CardsController < ApplicationController
 
   def destroy
     @card.destroy
-    redirect_to cards_path
+    redirect_to deck_cards_path
   end
 
   private
@@ -43,7 +41,12 @@ class CardsController < ApplicationController
     params.require(:card).permit(:original_text, :translated_text, :image)
   end
 
+  def set_deck
+    @deck = current_user.decks.find(params[:deck_id])
+  end
+
   def set_card
-    @card = current_user.cards.find(params[:id])
+    set_deck
+    @card = @deck.cards.find(params[:id])
   end
 end
