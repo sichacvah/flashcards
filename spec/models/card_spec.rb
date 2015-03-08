@@ -4,7 +4,7 @@ require "database_cleaner"
 DatabaseCleaner.strategy = :truncation
 
 describe Card do
-  before(:all)  do
+  before(:all) do
     DatabaseCleaner.clean
     user = create(:user, email: "email@email.com", password: "****",
                          password_confirmation: "****")
@@ -23,29 +23,34 @@ describe Card do
   describe "is valid first check translation" do
     it { expect(@card.check_translation("текст")).to be true }
     it do
-      expect(@card.review_date.to_i).to eq(DateTime.current.to_i + 12.hours.to_i)
+      expect(@card.review_date.to_i)
+      .to eq(DateTime.current.to_i + 12.hours.to_i)
     end
   end
 
   describe "is valid second check translation" do
     it { expect(@card.check_translation("текст")).to be true }
-    it { expect(@card.review_date.to_i).to eq(DateTime.current.to_i + 3.day.to_i) }
+    it { expect(@card.review_date.to_i)
+         .to eq(DateTime.current.to_i + 3.day.to_i) }
   end
 
   describe "is valid third check translation" do
     it { expect(@card.check_translation("текст")).to be true }
-    it { expect(@card.review_date.to_i).to eq(DateTime.current.to_i + 1.week.to_i) }
+    it { expect(@card.review_date.to_i)
+         .to eq(DateTime.current.to_i + 1.week.to_i) }
   end
 
   describe "is valid fourth check translation" do
     it { expect(@card.check_translation("текст")).to be true }
-    it { expect(@card.review_date.to_i).to eq(DateTime.current.to_i + 2.week.to_i) }
+    it { expect(@card.review_date.to_i)
+         .to eq(DateTime.current.to_i + 2.week.to_i) }
   end
 
   describe "is valid fifth check translation" do
     it { expect(@card.check_translation("текст")).to be true }
     future_date = DateTime.current + 1.month
-    it { expect(@card.review_date.strftime("%Y:%m:%d")).to eq(future_date.strftime("%Y:%m:%d")) }
+    it { expect(@card.review_date.strftime("%Y:%m:%d"))
+         .to eq(future_date.strftime("%Y:%m:%d")) }
   end
 
   it "is invalid check tranlation" do
