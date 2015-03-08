@@ -31,6 +31,7 @@ class Card < ActiveRecord::Base
 
   protected
 
+
   def compare_text(user_input, original_text)
     distance = Text::Levenshtein.distance(user_input, original_text)
     if distance == 0
