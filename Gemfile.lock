@@ -206,6 +206,7 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
+    timecop (0.7.3)
     turbolinks (2.5.3)
       coffee-rails
     tzinfo (1.2.2)
@@ -247,6 +248,7 @@ DEPENDENCIES
   simple_form
   sorcery (~> 0.9.0)
   spring
+  timecop
   turbolinks
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
