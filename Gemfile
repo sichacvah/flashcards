@@ -36,6 +36,8 @@ gem 'nokogiri'
 
 gem 'rails_12factor', group: :production
 
+gem 'text'
+
 group :development, :test do
 
   gem 'timecop'

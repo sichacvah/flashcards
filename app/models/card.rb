@@ -14,10 +14,12 @@ class Card < ActiveRecord::Base
   }
 
   def check_translation(user_input)
-    if prepare_word(user_input) == prepare_word(original_text)
+    compare_result = text_comparison(prepare_word(user_input),
+                                     prepare_word(original_text))
+    if compare_result
       increase_review_date
       increase_true_answer_count
-      true
+      compare_result
     elsif try_count > 3
       reset_review_count
       false
@@ -28,6 +30,21 @@ class Card < ActiveRecord::Base
   end
 
   protected
+
+  def text_comparison(user_input, original_text)
+    leven = Text::Levenshtein
+    if leven.distance(user_input, original_text) == 0
+      true
+    elsif leven.distance(user_input, original_text) == 3 and original_text.length >= 10
+      :incomplete_match
+    elsif leven.distance(user_input, original_text) == 2 and original_text.length >= 8
+      :incomplete_match
+    elsif leven.distance(user_input, original_text) == 1 and original_text.length >= 3
+      :incomplete_match
+    else
+      false
+    end
+  end
 
   def review_config
     [DateTime.current + 12.hours,
