@@ -44,7 +44,7 @@ class Card < ActiveRecord::Base
     if distance == 0
       :success
     elsif (distance == 3 && original_text.length >= 10) ||
-          (distance == 2 && original_text.length >= 8)  ||
+          (distance == 2 && original_text.length >= 8) ||
           (distance == 1 && original_text.length >= 3)
       :incomplete_match
     else
