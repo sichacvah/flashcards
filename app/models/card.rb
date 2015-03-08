@@ -31,25 +31,25 @@ class Card < ActiveRecord::Base
 
   protected
 
-  def compare_text(user_input, original_text)
-    distance = Text::Levenshtein.distance(user_input, original_text)
-    if distance == 0
-      :success
-    elsif (distance == 3 && original_text.length >= 10) ||
-          (distance == 2 && original_text.length >= 8) ||
-          (distance == 1 && original_text.length >= 3)
-      :incomplete_match
-    else
-      :failed
-    end
-  end
-
   def review_config
     [DateTime.current + 12.hours,
      DateTime.current + 3.days,
      DateTime.current + 1.week,
      DateTime.current + 2.week,
      DateTime.current + 1.month]
+  end
+
+  def compare_text(user_input, original_text)
+    distance = Text::Levenshtein.distance(user_input, original_text)
+    if distance == 0
+      :success
+    elsif (distance == 3 && original_text.length >= 10) ||
+          (distance == 2 && original_text.length >= 8)  ||
+          (distance == 1 && original_text.length >= 3)
+      :incomplete_match
+    else
+      :failed
+    end
   end
 
   def increase_try_count
