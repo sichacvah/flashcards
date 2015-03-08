@@ -16,7 +16,7 @@ class Card < ActiveRecord::Base
   def check_translation(user_input)
     compare_result = compare_text(prepare_word(user_input),
                                   prepare_word(original_text))
-    if compare_result
+    if compare_result == :success || compare_result == :incomplete_match
       increase_review_date
       increase_true_answer_count
       compare_result
@@ -34,15 +34,11 @@ class Card < ActiveRecord::Base
   def compare_text(user_input, original_text)
     distance = Text::Levenshtein.distance(user_input, original_text)
     if distance == 0
-      true
-    elsif distance == 3 && original_text.length >= 10
-      :incomplete_match
-    elsif distance == 2 && original_text.length >= 8
-      :incomplete_match
-    elsif distance == 1 && original_text.length >= 3
+      :success
+    elsif (distance == 3 && original_text.length >= 10) || (distance == 2 && original_text.length >= 8) || (distance == 1 && original_text.length >= 3)
       :incomplete_match
     else
-      false
+      :failed
     end
   end
 
