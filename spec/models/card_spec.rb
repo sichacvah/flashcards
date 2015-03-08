@@ -25,16 +25,16 @@ describe Card do
   describe "is valid first check translation" do
     it { expect(@card.check_translation("текст")).to be true }
     it do
-      expect(@card.review_date.to_i)
-      .to eq(DateTime.current.to_i + 12.hours.to_i)
+      expect(@card.review_date.to_i).
+        to eq(DateTime.current.to_i + 12.hours.to_i)
     end
   end
 
   describe "is valid second check translation" do
     it { expect(@card.check_translation("текст")).to be true }
     it do
-      expect(@card.review_date.to_i)
-      .to eq(DateTime.current.to_i + 3.day.to_i)
+      expect(@card.review_date.to_i).
+        to eq(DateTime.current.to_i + 3.day.to_i)
     end
   end
 
