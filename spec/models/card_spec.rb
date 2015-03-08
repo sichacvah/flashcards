@@ -4,18 +4,18 @@ require "database_cleaner"
 DatabaseCleaner.strategy = :truncation
 
 describe Card do
-  DatabaseCleaner.clean
-  before do
+  before(:all)  do
+    DatabaseCleaner.clean
     user = create(:user, email: "email@email.com", password: "****",
                          password_confirmation: "****")
     deck = user.decks.create(name: "Cat")
-    @card = deck.cards.create(translated_text: "text", original_text: "текст")
+    @card = deck.cards.create(translated_text: "text", original_text: "текст", user_id: user.id)
   end
 
   subject { @card }
 
   describe "has true data in model" do
-    it { expect(@card.review_date.to_i).to eq(Time.now.to_i) }
+    it { expect(@card.review_date.to_i).to eq(DateTime.now.to_i) }
     it { expect(@card.translated_text).to eq("text") }
     it { expect(@card.original_text).to eq("текст") }
   end
@@ -23,28 +23,29 @@ describe Card do
   describe "is valid first check translation" do
     it { expect(@card.check_translation("текст")).to be true }
     it do
-      expect(@card[:review_date]).to eq(Time.now + 12.hours)
+      expect(@card.review_date.to_i).to eq(DateTime.current.to_i + 12.hours.to_i)
     end
   end
 
   describe "is valid second check translation" do
     it { expect(@card.check_translation("текст")).to be true }
-    it { expect(@card.review_date).to eq(DateTime.current + 3.day) }
+    it { expect(@card.review_date.to_i).to eq(DateTime.current.to_i + 3.day.to_i) }
   end
 
   describe "is valid third check translation" do
     it { expect(@card.check_translation("текст")).to be true }
-    it { expect(@card.review_date).to eq(DateTime.current + 1.week) }
+    it { expect(@card.review_date.to_i).to eq(DateTime.current.to_i + 1.week.to_i) }
   end
 
   describe "is valid fourth check translation" do
     it { expect(@card.check_translation("текст")).to be true }
-    it { expect(@card.review_date).to eq(DateTime.current + 2.week) }
+    it { expect(@card.review_date.to_i).to eq(DateTime.current.to_i + 2.week.to_i) }
   end
 
   describe "is valid fifth check translation" do
     it { expect(@card.check_translation("текст")).to be true }
-    it { expect(@card.review_date).to eq(DateTime.current + 1.month) }
+    future_date = DateTime.current + 1.month
+    it { expect(@card.review_date.strftime("%Y:%m:%d")).to eq(future_date.strftime("%Y:%m:%d")) }
   end
 
   it "is invalid check tranlation" do

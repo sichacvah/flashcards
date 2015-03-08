@@ -16,6 +16,8 @@ class Card < ActiveRecord::Base
   def check_translation(user_input)
     if prepare_word(user_input) == prepare_word(original_text)
       increase_review_date
+      increase_true_answer_count
+      true
     elsif try_count > 3
       reset_review_count
       false
@@ -36,22 +38,21 @@ class Card < ActiveRecord::Base
   end
 
   def increase_try_count
-    update_attribute(:try_count, try_count + 1)
+    update_attributes(try_count: try_count + 1)
   end
 
   def increase_review_date
     update_attributes(review_date: review_config[true_answer_count])
-    increase_true_answer_count
   end
 
   def increase_true_answer_count
     if true_answer_count < review_config.length - 1
-      update_attribute(:true_answer_count, true_answer_count + 1)
+      update_attributes(true_answer_count: true_answer_count + 1)
     end
   end
 
   def reset_review_count
-    update_attribute(:true_answer_count, true_answer_count[0])
+    update_attributes(true_answer_count: true_answer_count[0])
   end
 
   def set_review_date
