@@ -31,15 +31,15 @@ class Card < ActiveRecord::Base
 
   protected
 
-  def text_comparison(user_input, original_text)
+  def text_comparison user_input, original_text
     leven = Text::Levenshtein
     if leven.distance(user_input, original_text) == 0
       true
-    elsif leven.distance(user_input, original_text) == 3 and original_text.length >= 10
+    elsif leven.distance(user_input, original_text) == 3 && original_text.length >= 10
       :incomplete_match
-    elsif leven.distance(user_input, original_text) == 2 and original_text.length >= 8
+    elsif leven.distance(user_input, original_text) == 2 && original_text.length >= 8
       :incomplete_match
-    elsif leven.distance(user_input, original_text) == 1 and original_text.length >= 3
+    elsif leven.distance(user_input, original_text) == 1 && original_text.length >= 3
       :incomplete_match
     else
       false
