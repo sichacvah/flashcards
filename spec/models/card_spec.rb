@@ -39,7 +39,7 @@ describe Card do
   describe "is valid third check translation" do
     it { expect(@card.check_translation("текст")).to be true }
     it do
-      expect(@card.review_date.to_i).to eq(DateTime.current.to_i + 1.week.to_i) }
+      expect(@card.review_date.to_i).to eq(DateTime.current.to_i + 1.week.to_i)
     end
   end
 
