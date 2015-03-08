@@ -10,7 +10,7 @@ class ReviewController < ApplicationController
       flash[:success] = "Правильно"
     elsif check_result == :incomplete_match
       flash[:warning] = "Опечатка. Вы ввели #{review_params[:user_input]},
-                         а переводом слова #{@card.translated_text} 
+                         а переводом слова #{@card.translated_text}
                          является #{@card.original_text}"
     else
       flash[:danger] = "Неправильно"
