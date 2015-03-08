@@ -56,7 +56,8 @@ describe Card do
     it { expect(@card.check_translation("текст")).to be true }
     it do
       future_date = DateTime.current + 1.month
-      expect(@card.review_date.strftime("%Y:%m:%d")).to eq(future_date.strftime("%Y:%m:%d"))
+      expect(@card.review_date.strftime("%Y:%m:%d"))
+        .to eq(future_date.strftime("%Y:%m:%d"))
     end
   end
 
