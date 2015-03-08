@@ -32,13 +32,16 @@ class Card < ActiveRecord::Base
   protected
 
   def compare_text(user_input, original_text)
-    words_distance = Text::Levenshtein.distance(user_input, original_text)
-    case words_distance
-    when 0 then true
-    when 3, original_text.length >= 10 then :incomplete_match
-    when 2, original_text.length >= 8 then :incomplete_match
-    when 1, original_text.length >= 3 then :incomplete_match
-    else 
+    distance = Text::Levenshtein.distance(user_input, original_text)
+    if distance == 0
+      true
+    elsif distance == 3 && original_text.length >= 10
+      :incomplete_match
+    elsif distance == 2 && original_text.length >= 8
+      :incomplete_match
+    elsif distance == 1 && original_text.length >= 3
+      :incomplete_match
+    else
       false
     end
   end
