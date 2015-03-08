@@ -46,7 +46,7 @@ describe Card do
   describe "is valid fourth check translation" do
     it { expect(@card.check_translation("текст")).to be true }
     it do
-      expect(@card.review_date.to_i).to eq(DateTime.current.to_i + 2.week.to_i) }
+      expect(@card.review_date.to_i).to eq(DateTime.current.to_i + 2.week.to_i)
     end
   end
 
@@ -54,7 +54,7 @@ describe Card do
     it { expect(@card.check_translation("текст")).to be true }
     it do
       future_date = DateTime.current + 1.month
-      expect(@card.review_date.strftime("%Y:%m:%d")).to eq(future_date.strftime("%Y:%m:%d")) }
+      expect(@card.review_date.strftime("%Y:%m:%d")).to eq(future_date.strftime("%Y:%m:%d"))
     end
   end
 
