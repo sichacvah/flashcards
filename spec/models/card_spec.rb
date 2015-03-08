@@ -9,7 +9,9 @@ describe Card do
     user = create(:user, email: "email@email.com", password: "****",
                          password_confirmation: "****")
     deck = user.decks.create(name: "Cat")
-    @card = deck.cards.create(translated_text: "text", original_text: "текст", user_id: user.id)
+    @card = deck.cards.create(translated_text: "text",
+                              original_text: "текст",
+                              user_id: user.id)
   end
 
   subject { @card }
