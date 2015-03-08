@@ -14,7 +14,7 @@ class Card < ActiveRecord::Base
   }
 
   def check_translation(user_input)
-    compare_result = text_comparison(prepare_word(user_input),
+    compare_result = compare_text(prepare_word(user_input),
                                      prepare_word(original_text))
     if compare_result
       increase_review_date
@@ -31,7 +31,7 @@ class Card < ActiveRecord::Base
 
   protected
 
-  def text_comparison user_input, original_text
+  def compare_text(user_input, original_text)
     leven = Text::Levenshtein
     if leven.distance(user_input, original_text) == 0
       true
