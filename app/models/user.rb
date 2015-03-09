@@ -15,6 +15,17 @@ class User < ActiveRecord::Base
     config.authentications_class = Authentication
   end
 
+  def self.pending_review_notify
+    User.all.each do |user|
+      cards_for_review = user.cards.for_review
+      unless cards_for_review.empty?
+        CardMailer.
+          pending_cards_notification(user, cards_for_review.length).
+          deliver_now
+      end
+    end
+  end
+
   def card_for_review
     if current_deck
       current_deck.cards.for_review.first

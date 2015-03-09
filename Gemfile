@@ -38,6 +38,8 @@ gem 'rails_12factor', group: :production
 
 gem 'text'
 
+gem 'whenever', require: false
+
 group :development, :test do
 
   gem 'timecop'
