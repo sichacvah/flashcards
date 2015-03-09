@@ -33,5 +33,4 @@ class User < ActiveRecord::Base
       cards.for_review.first
     end
   end
-
 end
