@@ -27,7 +27,7 @@ describe "the review card process" do
 
   it "false review card" do
     visit review_path
-    fill_in :user_input, with:"Doom"
+    fill_in :user_input, with:"ADFG"
     click_button "Проверить"
     expect(page).to have_content("Неправильно")
   end
