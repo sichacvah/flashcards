@@ -15,14 +15,6 @@ class User < ActiveRecord::Base
     config.authentications_class = Authentication
   end
 
-  def card_for_review
-    if current_deck
-      current_deck.cards.for_review.first
-    else
-      cards.for_review.first
-    end
-  end
-
   def self.pending_review_notify
     User.all.each do |user|
       cards_for_review = user.cards.for_review
@@ -33,4 +25,13 @@ class User < ActiveRecord::Base
       end
     end
   end
+
+  def card_for_review
+    if current_deck
+      current_deck.cards.for_review.first
+    else
+      cards.for_review.first
+    end
+  end
+
 end
