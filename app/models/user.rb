@@ -27,7 +27,9 @@ class User < ActiveRecord::Base
     User.all.each do |user|
       cards_for_review = user.cards.for_review
       unless cards_for_review.empty?
-        CardMailer.pending_cards_notification(user, cards_for_review.length).deliver_now
+        CardMailer.
+          pending_cards_notification(user, cards_for_review.length).
+            deliver_now
       end
     end
   end
