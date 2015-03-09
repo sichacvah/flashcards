@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
       unless cards_for_review.empty?
         CardMailer.
           pending_cards_notification(user, cards_for_review.length).
-            deliver_now
+          deliver_now
       end
     end
   end
