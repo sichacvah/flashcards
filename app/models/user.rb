@@ -22,4 +22,13 @@ class User < ActiveRecord::Base
       cards.for_review.first
     end
   end
+
+  def self.pending_review_notify
+    User.all.each do |user|
+      cards_for_review = user.cards.for_review
+      unless cards_for_review.empty?
+        CardMailer.pending_cards_notification(user, cards_for_review.length).deliver_now
+      end
+    end
+  end
 end
