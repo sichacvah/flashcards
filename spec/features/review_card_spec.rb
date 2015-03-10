@@ -9,6 +9,9 @@ end
 
 describe "the review card process" do
   before do
+    Capybara.register_driver :rack_test do |app|
+      Capybara::RackTest::Driver.new(app, headers: {"Accept-Language" => "ru"})
+    end
     DatabaseCleaner.clean
     user = create(:user, email: "email@email.com",
                          password: "****",
