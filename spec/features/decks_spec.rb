@@ -3,7 +3,7 @@ require "support/login"
 require "database_cleaner"
 
 DatabaseCleaner.strategy = :truncation
-Capybara.default_driver = :rack_driver
+Capybara.default_driver = :rack_test
 
 describe "the deck card process" do
   before do
