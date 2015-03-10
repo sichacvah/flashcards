@@ -1,28 +1,29 @@
-- if notice.present?
-  .alert.alert-dismissible.alert-success
-    = notice
+.container
+  - if notice.present?
+    .alert.alert-dismissible.alert-success
+      = notice
 
-.panel.panel-default
-  .panel-heading Карточка
-  .panel-body
-    %div.text-center
-      = image_tag @card.image.url(:medium)
-    %p
-      %b
-        %em Оргинальный текст: 
-      = @card.original_text
-    %hr
-    %p
-      %b
-        %em Перевод:
-      = @card.translated_text
-    %h6.text-right
-      %em= @card.review_date.strftime("%d/%m/%Y")
+  .panel.panel-default
+    .panel-heading= t "card"
+    .panel-body
+      %div.text-center
+        = image_tag @card.image.url(:medium)
+      %p
+        %b
+          %em= "#{t 'original_text'}:"
+        = @card.original_text
+      %hr
+      %p
+        %b
+          %em "#{t 'translated_text'}:"
+        = @card.translated_text
+      %h6.text-right
+        %em= @card.review_date.strftime("%d/%m/%Y")
 
-%ul.pager
-  %li
-    = link_to "Редактировать", edit_deck_card_path(@deck, @card)
-  %li
-    = link_to "Удалить", deck_card_path(@deck, @card), method: :delete, data: { confirm: "Вы уверены?" }
-  %li
-    = link_to "Назад", deck_cards_path(@deck)
+  %ul.pager
+    %li
+      = link_to t "change", edit_deck_card_path(@deck, @card)
+    %li
+      = link_to t "delete", deck_card_path(@deck, @card), method: :delete, data: { confirm: t "are_you_sure" }
+    %li
+      = link_to t "back", deck_cards_path(@deck)

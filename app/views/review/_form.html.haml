@@ -2,9 +2,9 @@
   %fieldset 
     .form-group
       .col-lg-12
-        %label.control-label Оригинальный текст
+        %label.control-label= t(:original_text)
         = hidden_field_tag :card_id, @card.id
         = text_field_tag :user_input,nil, class: "form-control"
         %br/
       .col-lg-12
-        = button_tag "Проверить", class: "btn btn-default"
+        = button_tag  t(:check), class: "btn btn-default"

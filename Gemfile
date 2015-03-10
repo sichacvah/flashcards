@@ -40,6 +40,8 @@ gem 'text'
 
 gem 'whenever', require: false
 
+gem 'http_accept_language'
+
 group :development, :test do
 
   gem 'timecop'
