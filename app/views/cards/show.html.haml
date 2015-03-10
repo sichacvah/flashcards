@@ -10,20 +10,20 @@
         = image_tag @card.image.url(:medium)
       %p
         %b
-          %em= "#{t 'original_text'}:"
+          %em= "#{t(:original_text)}:"
         = @card.original_text
       %hr
       %p
         %b
-          %em "#{t 'translated_text'}:"
+          %em= "#{t(:translated_text)}:"
         = @card.translated_text
       %h6.text-right
         %em= @card.review_date.strftime("%d/%m/%Y")
 
   %ul.pager
     %li
-      = link_to t "change", edit_deck_card_path(@deck, @card)
+      = link_to t(:change), edit_deck_card_path(@deck, @card)
     %li
-      = link_to t "delete", deck_card_path(@deck, @card), method: :delete, data: { confirm: t "are_you_sure" }
+      = link_to t(:delete), deck_card_path(@deck, @card), method: :delete, data: { confirm: t(:are_you_sure) }
     %li
-      = link_to t "back", deck_cards_path(@deck)
+      = link_to t(:back), deck_cards_path(@deck)

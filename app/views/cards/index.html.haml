@@ -4,20 +4,20 @@
     %thead
       %tr
         %td
-          %strong= t 'original_text'
+          %strong= t(:original_text)
         %td
-          %strong= t 'translated_text'
+          %strong= t(:translated_text)
         %td
-          %strong= t 'review_date'
+          %strong= t(:review_date)
     %tbody
       - @cards.each do |card|
         %tr
           %td= card.original_text
           %td= card.translated_text
           %td= card.review_date.strftime("%d/%m/%Y")
-          %td= link_to t "show", deck_card_path(@deck, card)
-          %td= link_to t "delete", deck_card_path(@deck, card), method: :delete, data: { confirm: "Вы уверены?" }
-          %td= link_to t "edit", edit_deck_card_path(@deck, card)
+          %td= link_to t(:show), deck_card_path(@deck, card)
+          %td= link_to t(:delete), deck_card_path(@deck, card), method: :delete, data: { confirm: t(:are_you_sure) }
+          %td= link_to t(:edit), edit_deck_card_path(@deck, card)
 
   %p.text-right
-    = link_to t "add_card", new_deck_card_path(@deck, @user), class: "btn btn-primary"
+    = link_to t(:add_card), new_deck_card_path(@deck, @user), class: "btn btn-primary"

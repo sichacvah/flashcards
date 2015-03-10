@@ -4,8 +4,12 @@ ru:
       user: "Пользователь"
   helpers:
     submit:
-      create: "Создать пользователя"
-      update: "Изменить пользователя"
+      user:
+        create: "Создать пользователя"
+        update: "Изменить пользователя"
+      deck:
+        create: "Создать колоду"
+        update: "Изменить колоду"
   hello: "Здравствуйте"
   card: "Карточка"
   pending_cards: "У вас %{cards_for_review} карточек для просмотра."
@@ -38,7 +42,10 @@ ru:
   not_cards: "У вас нет ни одной карточки для просмотра"
   password: "Пароль"
   password_confirmation: "Подтвердите пароль"
-  login_twitter: "Войти через Твиттер"
+  login_from_provider: "Вход через %{provider}"
   locale: "Язык"
   set_current: "Сделать текущей"
-  you_have_decks: "У вас %{deck_count} колод"
+  you_have_decks: "У вас %{decks_count} колод"
+  card_created: "Карточка создана"
+  account_changed: "Аккаунт изменён"
+  missprint: "Ой! У вас опечатка,вы ввели - %{user_input}, перодом слова '%{translate}' является '%{original}'"

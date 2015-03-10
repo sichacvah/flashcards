@@ -44,6 +44,8 @@ gem 'http_accept_language'
 
 group :development, :test do
 
+  gem 'selenium-webdriver'
+
   gem 'timecop'
 
   gem 'database_cleaner', '~> 1.4.0'

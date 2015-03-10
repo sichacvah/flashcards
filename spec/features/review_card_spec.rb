@@ -3,16 +3,14 @@ require "support/login"
 require "database_cleaner"
 
 DatabaseCleaner.strategy = :truncation
-Capybara.register_driver :rack_test do |app|
-  Capybara::RackTest::Driver.new(app, headers: { "Accept-Language" => "ru" })
-end
+
 
 describe "the review card process" do
   before do
-    Capybara.register_driver :rack_test do |app|
-      Capybara::RackTest::Driver.new(app, headers: {"Accept-Language" => "ru"})
-    end
     DatabaseCleaner.clean
+    Capybara.register_driver :rack_test do |app|
+      Capybara::RackTest::Driver.new(app, :headers => { 'HTTP_USER_AGENT' => 'Capybara' })
+    end
     user = create(:user, email: "email@email.com",
                          password: "****",
                          password_confirmation: "****",
