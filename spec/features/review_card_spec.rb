@@ -6,6 +6,8 @@ DatabaseCleaner.strategy = :truncation
 
 describe "the review card process" do
   before do
+    Capybara.current_session.driver.
+      headers = { "Accept-Language" => "ru" }
     DatabaseCleaner.clean
     user = create(:user, email: "email@email.com",
                          password: "****",
