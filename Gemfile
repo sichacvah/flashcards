@@ -42,8 +42,6 @@ gem 'whenever', require: false
 
 gem 'http_accept_language'
 
-gem 'selenium-webdriver'
-
 group :development, :test do
 
   gem 'timecop'
