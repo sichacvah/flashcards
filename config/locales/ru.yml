@@ -49,3 +49,5 @@ ru:
   card_created: "Карточка создана"
   account_changed: "Аккаунт изменён"
   missprint: "Ой! У вас опечатка,вы ввели - %{user_input}, перодом слова '%{translate}' является '%{original}'"
+  success: "Правильно"
+  fail: "Неправильно"

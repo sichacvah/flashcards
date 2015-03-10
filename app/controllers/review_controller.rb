@@ -13,7 +13,7 @@ class ReviewController < ApplicationController
                                       translate: @card.translated_text,
                                       original: @card.original_text)
     else
-      flash[:danger] = "Неправильно"
+      flash[:danger] = t :fail
     end
     redirect_to review_path
   end

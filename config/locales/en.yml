@@ -36,3 +36,5 @@ en:
   card_created: "Card created"
   account_changed: "Account Changed"
   missprint: "Oh! You have misprint, you input - %{user_input}, but true translate this word '%{translate}' is '%{original}'"
+  success: "Success"
+  fail: "Fail"
