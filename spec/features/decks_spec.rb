@@ -3,12 +3,12 @@ require "support/login"
 require "database_cleaner"
 
 DatabaseCleaner.strategy = :truncation
-Capybara.default_driver = :rack_test
+Capybara.register_driver :rack_test do |app|
+  Capybara::RackTest::Driver.new(app, headers: { "Accept-Language" => "ru" })
+end
 
 describe "the deck card process" do
   before do
-    Capybara.current_session.driver.
-      headers = { "Accept-Language" => "ru" }
     DatabaseCleaner.clean
     @user = create(:user, email: "email@email.com",
                           password: "****",
