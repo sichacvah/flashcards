@@ -13,6 +13,7 @@ class ProfileController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :locale)
+    params.require(:user).permit(:email, :password, :password_confirmation,
+                                 :locale)
   end
 end
