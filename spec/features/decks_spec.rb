@@ -10,6 +10,9 @@ end
 describe "the deck card process" do
   before do
     DatabaseCleaner.clean
+    Capybara.register_driver :rack_test do |app|
+      Capybara::RackTest::Driver.new(app, headers: { "Accept-Language" => "ru"})
+    end
     @user = create(:user, email: "email@email.com",
                           password: "****",
                           password_confirmation: "****")
