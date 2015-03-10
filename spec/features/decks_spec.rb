@@ -3,6 +3,7 @@ require "support/login"
 require "database_cleaner"
 
 DatabaseCleaner.strategy = :truncation
+Capybara.default_driver = :poltergeist
 
 describe "the deck card process" do
   before do
