@@ -4,13 +4,9 @@ require "database_cleaner"
 
 DatabaseCleaner.strategy = :truncation
 
-
 describe "the review card process" do
   before do
     DatabaseCleaner.clean
-    Capybara.register_driver :rack_test do |app|
-      Capybara::RackTest::Driver.new(app, :headers => { 'HTTP_USER_AGENT' => 'Capybara' })
-    end
     user = create(:user, email: "email@email.com",
                          password: "****",
                          password_confirmation: "****",

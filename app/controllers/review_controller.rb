@@ -9,7 +9,7 @@ class ReviewController < ApplicationController
     if check_result == :success
       flash[:success] = t(:success)
     elsif check_result == :incomplete_match
-      flash[:warning] = t(:missprint, user_input:review_params[:user_input], 
+      flash[:warning] = t(:missprint, user_input: review_params[:user_input],
                                       translate: @card.translated_text,
                                       original: @card.original_text)
     else
