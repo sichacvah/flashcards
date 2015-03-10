@@ -15,7 +15,8 @@ describe "the deck card process" do
     end
     @user = create(:user, email: "email@email.com",
                           password: "****",
-                          password_confirmation: "****")
+                          password_confirmation: "****",
+                          locale: :ru)
     deck = @user.decks.create(name: "Cats")
     card = deck.cards.create(original_text: "Home",
                              translated_text: "Дом")
