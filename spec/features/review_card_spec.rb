@@ -3,7 +3,7 @@ require "support/login"
 require "database_cleaner"
 
 DatabaseCleaner.strategy = :truncation
-Capybara.default_driver = :poltergeist
+Capybara.default_driver = :selenium
 
 describe "the review card process" do
   before do
