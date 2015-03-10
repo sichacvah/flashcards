@@ -1,8 +1,8 @@
 = simple_form_for [deck, card], html: { class: 'form-horizontal' } do |f|
-  = f.input :original_text, hint: false, label: 'Оригинальный текст'
-  = f.input :translated_text, label: 'Перевод'
-  = f.input :image, as: :file, label: 'Картинка'
+  = f.input :original_text, hint: false, label: t(:original_text)
+  = f.input :translated_text, label: t(:translated_text)
+  = f.input :image, as: :file, label: t(:picture)
   .container
     .col-xs-12.text-right
       = f.button :submit
-      = link_to "Назад", deck_cards_path(@deck), class: "btn btn-primary text-right"
+      = link_to t(:back), deck_cards_path(@deck), class: "btn btn-primary text-right"

@@ -9,14 +9,14 @@ class OauthsController < ApplicationController
     provider = auth_params[:provider]
     if @user = login_from(provider)
       redirect_to(review_path,
-                  notice: "Logged in from #{provider.titleize}!")
+                  notice: t(:login_from_provider, provider: provider))
     else
       begin
         @user = create_from(provider)
         reset_session
         auto_login(@user)
         redirect_to(review_path,
-                    notice: "Logged in from #{provider.titleize}!")
+                    notice: t(:login_from_provider, provider: provider))
       end
     end
   end

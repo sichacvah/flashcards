@@ -2,7 +2,7 @@
   %head
     %meta{content:'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type'}
   %body
-    %h1 Здравствуте!
-    %p= "У вас #{@cards_for_review_count} непроверенных карточек"
-    %p= "Проверьте себя #{root_path}"
+    %h1= t(:hello)
+    %p= t(:pending_cards), cards_for_review_count: @cards_for_review_count
+    %p= t(:check_yourself), root_path: root_path
 

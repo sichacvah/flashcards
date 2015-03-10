@@ -16,24 +16,23 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <%= link_to "ФлешКарточкер", root_path, class: "navbar-brand"%>
+        <%= link_to t( :brand), root_path, class: "navbar-brand"%>
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
           <% if current_user %>
-            <li><%= link_to "Все колоды", decks_path %></li>
-            <li><%= link_to "Добавить колоду", new_deck_path %></li>
-            <li><%= link_to "Аккаунт", edit_profile_path(current_user) %></li>
-            <li><%= link_to "Выход", :logout, method: :post %></li>
+            <li><%= link_to t( :all_decks), decks_path %></li>
+            <li><%= link_to t( :add_deck), new_deck_path %></li>
+            <li><%= link_to t( :account), edit_profile_path(current_user) %></li>
+            <li><%= link_to t( :exit), :logout, method: :post %></li>
           <% end %>
         </ul>
       </div>
     </div>
   </nav>
 
-  <div class="container">
-    <%= yield %>
-  </div>
+  <%= yield %>
+
 
 </body>
 </html>

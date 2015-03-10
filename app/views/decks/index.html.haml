@@ -1,23 +1,24 @@
-%h1= "У вас #{@decks.count} колод:"
-%br/
-- flash.each do |name, msg|
-  = content_tag :div, msg, class: "alert alert-#{name}"
+.container
+  %h1= t("you_have_decks", decks_count: @decks.count)
+  %br/
+  - flash.each do |name, msg|
+    = content_tag :div, msg, class: "alert alert-#{name}"
 
-.row
-  - @decks.each do |deck|
-    .col-lg-4
-      .panel.panel-primary
-        .panel-heading
-          .h3.panel-title
-            %em= "#{deck.name}"
-            - if deck.current?
-              %span - Текущая Колода
-        .panel-body
+  .row
+    - @decks.each do |deck|
+      .col-lg-4
+        .panel.panel-primary
+          .panel-heading
+            .h3.panel-title
+              %em= "#{deck.name}"
+              - if deck.current?
+                %span - Текущая Колода
+          .panel-body
 
-          %p.text-right
-            - unless deck.current?
-              = link_to "Сделать текущей", set_current_deck_path(deck), method: :put
-            = link_to "Посмотреть", deck_cards_path(deck)
-            = link_to "Редактировать", edit_deck_path(deck)
-            = link_to "Удалить", deck_path(deck), method: :delete, data: { confirm: "Вы уверены?" }
+            %p.text-right
+              - unless deck.current?
+                = link_to t(:set_current), set_current_deck_path(deck), method: :put
+              = link_to t(:show), deck_cards_path(deck)
+              = link_to t(:edit), edit_deck_path(deck)
+              = link_to t(:delete), deck_path(deck), method: :delete, data: { confirm: t(:are_you_sure) }
 

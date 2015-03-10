@@ -1,8 +1,14 @@
-.jumbotron
-  .h1 Первый в мире удобный менеджер флеш-катрочек. Именно так
-  %br/
-  %p.text-center
-    = link_to "Регистрация", new_registration_path, class: 'btn btn-large btn-primary'
-    = link_to "Вход", login_path, class: 'btn btn-large btn-primary'
+.container
+  .jumbotron
+    .h1= t :banner
+    %br/
+    %p.text-center
+      = link_to t( :registration), new_registration_path, class: 'btn btn-large btn-primary'
+      = link_to t( :login), login_path, class: 'btn btn-large btn-primary'
+%footer.footer
+  .container
+    %p.text-muted
+      = link_to 'English', url_for( locale: 'en' )
+      = link_to 'Русский', url_for( locale: 'ru' )
 
 

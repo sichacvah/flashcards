@@ -4,7 +4,7 @@ class ProfileController < ApplicationController
 
   def update
     if current_user.update_attributes(user_params)
-      redirect_to review_path, notice: "Акканут изменён."
+      redirect_to review_path, notice: t(:account_changed)
     else
       render :edit
     end
@@ -13,6 +13,7 @@ class ProfileController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:email, :password, :password_confirmation,
+                                 :locale)
   end
 end
