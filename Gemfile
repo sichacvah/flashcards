@@ -42,6 +42,8 @@ gem 'whenever', require: false
 
 gem 'http_accept_language'
 
+gem 'rollbar'
+
 group :development, :test do
 
   gem 'selenium-webdriver'
