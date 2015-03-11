@@ -17,16 +17,12 @@ class Card < ActiveRecord::Base
     compare_result = compare_text(prepare_word(user_input),
                                   prepare_word(original_text))
     time_to_answer = nil if compare_result == :failed
-    change_repetitions time_to_answer
+    super_memo = SuperMemo.new(self, time_to_answer)
+    update_attributes(super_memo.get_repetition)
     compare_result
   end
 
   protected
-
-  def change_repetitions(time_to_answer)
-    super_memo = SuperMemo.new(self, time_to_answer)
-    update_attributes(super_memo.get_repetition)
-  end
 
   def true_answer?(compare_result)
     compare_result == :success || compare_result == :incomplete_match
@@ -45,12 +41,8 @@ class Card < ActiveRecord::Base
     end
   end
 
-  def increase_review_date
-    update_attributes(review_date: review_config[true_answer_count])
-  end
-
-  def set_review_date(new_review_date = DateTime.current)
-    self.review_date = new_review_date
+  def set_review_date
+    self.review_date = DateTime.current
   end
 
   def prepare_word(word)
