@@ -48,7 +48,7 @@ class SuperMemo
   end
 
   def modify_e_factor
-    # e_factor - easiness factor reflecting the easiness of memorizing. 
+    # e_factor - easiness factor reflecting the easiness of memorizing.
     # From SuperMemo method by P.A.Wozniak http://www.supermemo.com/english/ol/sm2.htm
     @e_factor += 0.1 - (5 - @quality) * (0.08 + (5 - @quality) * 0.02)
     @e_factor = 1.3 if @e_factor < 1.3

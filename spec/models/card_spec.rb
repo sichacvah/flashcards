@@ -13,7 +13,6 @@ describe Card do
                               user_id: user.id)
   end
 
-
   subject { @card }
 
   describe "has true data in model" do
@@ -53,7 +52,7 @@ describe Card do
     end
     it "valid fourth review date" do
       expect(@card.review_date.strftime("%Y:%m:%d-%H:%M")).
-        to eq((DateTime.current + 6 * 2.5*(2.5 + 0.1)).strftime("%Y:%m:%d-%H:%M"))
+        to eq((DateTime.current + 6 * 2.5 * (2.5 + 0.1)).strftime("%Y:%m:%d-%H:%M"))
     end
     it "is invalid check tranlation" do
       expect(@card.check_translation("письмо", 1000)).to eq(:failed)
