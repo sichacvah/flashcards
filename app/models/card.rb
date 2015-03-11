@@ -17,7 +17,7 @@ class Card < ActiveRecord::Base
     compare_result = compare_text(prepare_word(user_input),
                                   prepare_word(original_text))
     time_to_answer = nil if compare_result == :failed
-    super_memo = SuperMemo.new(self, time_to_answer = 1000)
+    super_memo = SuperMemo.new(self, time_to_answer)
     update_attributes(super_memo.get_repetition)
     compare_result
   end
