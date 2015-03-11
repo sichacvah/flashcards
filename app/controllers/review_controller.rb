@@ -5,7 +5,7 @@ class ReviewController < ApplicationController
 
   def review_card
     @card = Card.find(review_params[:card_id])
-    check_result = @card.check_translation review_params[:user_input]
+    check_result = @card.check_translation review_params[:user_input], review_params[:time_to_answer]
     if check_result == :success
       flash[:success] = t(:success)
     elsif check_result == :incomplete_match
