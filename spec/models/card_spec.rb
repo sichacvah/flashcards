@@ -17,12 +17,12 @@ describe Card do
     @super_memo = SuperMemo.new(@card_dummy, 5)
   end
 
-
   subject { @card }
 
   describe "has true data in model" do
     it do
-      expect(@card.review_date.strftime("%Y:%m:%d-%H:%M")).to eq(DateTime.current.strftime("%Y:%m:%d-%H:%M"))
+      expect(@card.review_date.strftime("%Y:%m:%d-%H:%M")).
+        to eq(DateTime.current.strftime("%Y:%m:%d-%H:%M"))
     end
     it "valid translated text" do
       expect(@card.translated_text).to eq("text")
@@ -46,7 +46,7 @@ describe Card do
       @super_memo = SuperMemo.new(@card_dummy, 5)
       @card_dummy.set_items(@super_memo.get_repetition)
       expect(@card.review_date.strftime("%Y:%m:%d-%H:%M")).
-        to eq( @card_dummy.review_date.strftime("%Y:%m:%d-%H:%M"))
+        to eq(@card_dummy.review_date.strftime("%Y:%m:%d-%H:%M"))
     end
     it "third check" do
       expect(@card.check_translation("текст")).to eq(:success)

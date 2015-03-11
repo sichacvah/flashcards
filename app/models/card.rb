@@ -13,7 +13,7 @@ class Card < ActiveRecord::Base
     where("review_date <= ?", DateTime.current).order("RANDOM()")
   }
 
-  def check_translation(user_input, time_to_answer=5)
+  def check_translation(user_input, time_to_answer)
     compare_result = compare_text(prepare_word(user_input),
                                   prepare_word(original_text))
     time_to_answer = nil if compare_result == :failed

@@ -13,7 +13,7 @@ class SuperMemo
     { interval: interval,
       e_factor: @e_factor,
       repetition_count: @repetition_count + 1,
-      review_date: DateTime.current + interval.days}
+      review_date: DateTime.current + interval.days }
   end
 
   private
@@ -22,7 +22,7 @@ class SuperMemo
     if time_to_answer.nil?
       return 0
     end
-    case time_to_answer.to_i/1000
+    case time_to_answer.to_i / 1000
     when 0..5 then 5
     when 6..10 then 4
     when 11..15 then 3
@@ -31,7 +31,6 @@ class SuperMemo
       1
     end
   end
-
 
   def restart_repetition
     @repetition_count = 0
