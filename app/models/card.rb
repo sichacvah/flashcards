@@ -16,19 +16,14 @@ class Card < ActiveRecord::Base
   def check_translation(user_input, time_to_answer)
     compare_result = compare_text(prepare_word(user_input),
                                   prepare_word(original_text))
-    if compare_result == :failed
-      time_to_answer = nil
-    end
-    super_memo = SuperMemo.new(self, time_to_answer)
+    time_to_answer = nil if compare_result == :failed
+    super_memo = SuperMemo.new(interval, e_factor,
+                               repetition_count, time_to_answer)
     update_attributes(super_memo.get_repetition)
     compare_result
   end
 
   protected
-
-  def true_answer?(compare_result)
-    compare_result == :success || compare_result == :incomplete_match
-  end
 
   def compare_text(user_input, original_text)
     distance = Text::Levenshtein.distance(user_input, original_text)

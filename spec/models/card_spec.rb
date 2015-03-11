@@ -1,6 +1,5 @@
 require "rails_helper"
 require "database_cleaner"
-require "support/card_dummy"
 DatabaseCleaner.strategy = :truncation
 
 describe Card do
@@ -12,10 +11,8 @@ describe Card do
     @card = deck.cards.create(translated_text: "text",
                               original_text: "текст",
                               user_id: user.id)
-    @card_dummy = CardDummy.new
-    @card_dummy.set_items
-    @super_memo = SuperMemo.new(@card_dummy, 5)
   end
+
 
   subject { @card }
 
@@ -34,37 +31,29 @@ describe Card do
       expect(@card.check_translation("текст", 1000)).to eq(:success)
     end
     it "valid first review date" do
-      @super_memo = SuperMemo.new(@card_dummy, 5)
-      @card_dummy.set_items(@super_memo.get_repetition)
       expect(@card.review_date.strftime("%Y:%m:%d:%H:%M")).
-        to eq(@card_dummy.review_date.strftime("%Y:%m:%d:%H:%M"))
+        to eq((DateTime.current + 1.day).strftime("%Y:%m:%d:%H:%M"))
     end
     it "second check" do
       expect(@card.check_translation("текст", 1000)).to eq(:success)
     end
     it "valid second review date" do
-      @super_memo = SuperMemo.new(@card_dummy, 5)
-      @card_dummy.set_items(@super_memo.get_repetition)
-      expect(@card.review_date.strftime("%Y:%m:%d-%H:%M")).
-        to eq(@card_dummy.review_date.strftime("%Y:%m:%d-%H:%M"))
+      expect(@card.review_date.strftime("%Y:%m:%d:%H:%M")).
+        to eq((DateTime.current + 6.day).strftime("%Y:%m:%d:%H:%M"))
     end
     it "third check" do
       expect(@card.check_translation("текст", 1000)).to eq(:success)
     end
     it "valid  third review date" do
-      @super_memo = SuperMemo.new(@card_dummy, 5)
-      @card_dummy.set_items(@super_memo.get_repetition)
-      expect(@card.review_date.strftime("%Y:%m:%d-%H:%M")).
-        to eq(@card_dummy.review_date.strftime("%Y:%m:%d-%H:%M"))
+      expect(@card.review_date.strftime("%Y:%m:%d:%H:%M")).
+        to eq((DateTime.current + 6 * 2.5).strftime("%Y:%m:%d:%H:%M"))
     end
     it "valid fourth check" do
       expect(@card.check_translation("текст", 1000)).to eq(:success)
     end
-    it "valid forth review date" do
-      @super_memo = SuperMemo.new(@card_dummy, 5)
-      @card_dummy.set_items(@super_memo.get_repetition)
+    it "valid fourth review date" do
       expect(@card.review_date.strftime("%Y:%m:%d-%H:%M")).
-        to eq(@card_dummy.review_date.strftime("%Y:%m:%d-%H:%M"))
+        to eq((DateTime.current + 6 * 2.5*(2.5 + 0.1)).strftime("%Y:%m:%d-%H:%M"))
     end
     it "is invalid check tranlation" do
       expect(@card.check_translation("письмо", 1000)).to eq(:failed)
