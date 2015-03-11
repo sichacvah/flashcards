@@ -16,7 +16,9 @@ class Card < ActiveRecord::Base
   def check_translation(user_input, time_to_answer)
     compare_result = compare_text(prepare_word(user_input),
                                   prepare_word(original_text))
-    time_to_answer = nil if compare_result == :failed
+    if compare_result == :failed
+      time_to_answer = nil
+    end
     super_memo = SuperMemo.new(self, time_to_answer)
     update_attributes(super_memo.get_repetition)
     compare_result
