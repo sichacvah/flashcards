@@ -23,7 +23,7 @@ class DecksController < ApplicationController
 
   def update
     if @deck.update_attributes(deck_params)
-      redirect_to deck_path, notice: "Карточка изменена."
+      redirect_to decks_path, notice: "Карточка изменена."
     else
       render :edit
     end
