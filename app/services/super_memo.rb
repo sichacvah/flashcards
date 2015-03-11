@@ -1,25 +1,37 @@
 class SuperMemo
-  def initialize(options = {}, quality)
-    @quality = quality
-    @interval = options[:interval]
-    @e_factor = options[:e_factor]
-    @quality = options[:quality]
-    @repetition_count = options[:repetition_count]
-    if @quality < 3
-      restart_repetition
+  def initialize(card, time_to_answer)
+    @quality = set_quality time_to_answer
+    @current_interval = card.interval
+    @e_factor = card.e_factor
+    @repetition_count = card.repetition_count
+    restart_repetition if @quality < 3
   end
 
-
   def get_repetition
-    set_new_interval
-    if @repetition_count > 1
-      modify_e_factor
-    { interval: @interval,
+    interval = set_new_interval
+    modify_e_factor if @repetition_count > 1
+    { interval: interval,
       e_factor: @e_factor,
-      repetition_count: @repetition_count + 1 }
+      repetition_count: @repetition_count + 1,
+      review_date: DateTime.current + interval.days}
   end
 
   private
+
+  def set_quality(time_to_answer)
+    if time_to_answer.nil?
+      return 0
+    end
+    case time_to_answer.to_i/1000
+    when 0..5 then 5
+    when 6..10 then 4
+    when 11..15 then 3
+    when 16..20 then 2
+    else
+      1
+    end
+  end
+
 
   def restart_repetition
     @repetition_count = 0
@@ -31,7 +43,7 @@ class SuperMemo
     elsif @repetition_count == 1
       6
     else
-      @interval * @e_factor
+      @current_interval * @e_factor
     end
   end
 
@@ -39,6 +51,4 @@ class SuperMemo
     @e_factor += 0.1 - (5 - @quality) * (0.08 + (5 - @quality) * 0.02)
     @e_factor = 1.3 if @e_factor < 1.3
   end
-
-
 end

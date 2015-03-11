@@ -12,7 +12,7 @@ class ReviewController < ApplicationController
       flash[:warning] = t(:missprint, user_input: review_params[:user_input],
                                       translate: @card.translated_text,
                                       original: @card.original_text)
-    else
+    elsif check_result == :failed
       flash[:danger] = t :fail
     end
     redirect_to review_path
@@ -21,6 +21,6 @@ class ReviewController < ApplicationController
   private
 
   def review_params
-    params.permit(:card_id, :user_input)
+    params.permit(:card_id, :user_input, :time_to_answer)
   end
 end
