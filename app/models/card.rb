@@ -13,59 +13,29 @@ class Card < ActiveRecord::Base
     where("review_date <= ?", DateTime.current).order("RANDOM()")
   }
 
-  def check_translation(user_input)
-    compare_result = compare_text(prepare_word(user_input),
+  def check_translation(user_input, time_to_answer)
+    comparison_result = compare_text(prepare_word(user_input),
                                   prepare_word(original_text))
-    if compare_result == :success || compare_result == :incomplete_match
-      increase_review_date
-      increase_true_answer_count
-      compare_result
-    elsif try_count > 3
-      reset_review_count
-      false
-    else
-      increase_try_count
-      false
-    end
+    time_to_answer = nil if comparison_result == :failed
+    super_memo = SuperMemo.new(interval, e_factor,
+                               repetition_count, time_to_answer)
+    update_attributes(super_memo.get_repetition)
+    comparison_result
   end
 
   protected
-
-  def review_config
-    [DateTime.current + 12.hours,
-     DateTime.current + 3.days,
-     DateTime.current + 1.week,
-     DateTime.current + 2.week,
-     DateTime.current + 1.month]
-  end
 
   def compare_text(user_input, original_text)
     distance = Text::Levenshtein.distance(user_input, original_text)
     if distance == 0
       :success
-    elsif (1..3).include?(distance) && original_text.length >= 3
+    elsif (distance == 3 && original_text.length >= 10) ||
+          (distance == 2 && original_text.length >= 8) ||
+          (distance == 1 && original_text.length >= 3)
       :incomplete_match
     else
       :failed
     end
-  end
-
-  def increase_try_count
-    update_attributes(try_count: try_count + 1)
-  end
-
-  def increase_review_date
-    update_attributes(review_date: review_config[true_answer_count])
-  end
-
-  def increase_true_answer_count
-    if true_answer_count < review_config.length - 1
-      update_attributes(true_answer_count: true_answer_count + 1)
-    end
-  end
-
-  def reset_review_count
-    update_attributes(true_answer_count: true_answer_count[0])
   end
 
   def set_review_date

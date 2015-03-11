@@ -1,6 +1,5 @@
 require "rails_helper"
 require "database_cleaner"
-
 DatabaseCleaner.strategy = :truncation
 
 describe Card do
@@ -17,52 +16,47 @@ describe Card do
   subject { @card }
 
   describe "has true data in model" do
-    it { expect(@card.review_date.to_i).to eq(DateTime.now.to_i) }
-    it { expect(@card.translated_text).to eq("text") }
-    it { expect(@card.original_text).to eq("текст") }
-  end
-
-  describe "is valid first check translation" do
-    it { expect(@card.check_translation("текст")).to eq(:success) }
     it do
-      expect(@card.review_date.to_i).
-        to eq(DateTime.current.to_i + 12.hours.to_i)
+      expect(@card.review_date.strftime("%Y:%m:%d-%H:%M")).
+        to eq(DateTime.current.strftime("%Y:%m:%d-%H:%M"))
     end
-  end
-
-  describe "is valid second check translation" do
-    it { expect(@card.check_translation("текст")).to eq(:success) }
-    it do
-      expect(@card.review_date.to_i).
-        to eq(DateTime.current.to_i + 3.day.to_i)
+    it "valid translated text" do
+      expect(@card.translated_text).to eq("text")
     end
-  end
-
-  describe "is valid third check translation" do
-    it { expect(@card.check_translation("текст")).to eq(:success) }
-    it do
-      expect(@card.review_date.to_i).to eq(DateTime.current.to_i + 1.week.to_i)
+    it "valid original text" do
+      expect(@card.original_text).to eq("текст")
     end
-  end
-
-  describe "is valid fourth check translation" do
-    it { expect(@card.check_translation("текст")).to eq(:success) }
-    it do
-      expect(@card.review_date.to_i).to eq(DateTime.current.to_i + 2.week.to_i)
+    it "first check" do
+      expect(@card.check_translation("текст", 1000)).to eq(:success)
     end
-  end
-
-  describe "is valid fifth check translation" do
-    it { expect(@card.check_translation("текст")).to eq(:success) }
-    it do
-      future_date = DateTime.current + 1.month
-      expect(@card.review_date.strftime("%Y:%m:%d")).
-        to eq(future_date.strftime("%Y:%m:%d"))
+    it "valid first review date" do
+      expect(@card.review_date.strftime("%Y:%m:%d:%H:%M")).
+        to eq((DateTime.current + 1.day).strftime("%Y:%m:%d:%H:%M"))
     end
-  end
-
-  it "is invalid check tranlation" do
-    expect(@card.check_translation("письмо")).to be false
+    it "second check" do
+      expect(@card.check_translation("текст", 1000)).to eq(:success)
+    end
+    it "valid second review date" do
+      expect(@card.review_date.strftime("%Y:%m:%d:%H:%M")).
+        to eq((DateTime.current + 6.day).strftime("%Y:%m:%d:%H:%M"))
+    end
+    it "third check" do
+      expect(@card.check_translation("текст", 1000)).to eq(:success)
+    end
+    it "valid  third review date" do
+      expect(@card.review_date.strftime("%Y:%m:%d:%H:%M")).
+        to eq((DateTime.current + 6 * 2.5).strftime("%Y:%m:%d:%H:%M"))
+    end
+    it "valid fourth check" do
+      expect(@card.check_translation("текст", 1000)).to eq(:success)
+    end
+    it "valid fourth review date" do
+      expect(@card.review_date.strftime("%Y:%m:%d-%H:%M")).
+        to eq((DateTime.current + 6 * 2.5 * (2.5 + 0.1)).strftime("%Y:%m:%d-%H:%M"))
+    end
+    it "is invalid check tranlation" do
+      expect(@card.check_translation("письмо", 1000)).to eq(:failed)
+    end
   end
 
   describe "not empty" do
