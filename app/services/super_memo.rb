@@ -1,5 +1,5 @@
 class SuperMemo
-  def initialize(card, time_to_answer)
+  def initialize(card, time_to_answer = 1000)
     @quality = set_quality time_to_answer
     @current_interval = card.interval
     @e_factor = card.e_factor
