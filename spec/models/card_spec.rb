@@ -31,7 +31,7 @@ describe Card do
       expect(@card.original_text).to eq("текст")
     end
     it "first check" do
-      expect(@card.check_translation("текст")).to eq(:success)
+      expect(@card.check_translation("текст", 1000)).to eq(:success)
     end
     it "valid first review date" do
       @super_memo = SuperMemo.new(@card_dummy, 5)
@@ -40,7 +40,7 @@ describe Card do
         to eq(@card_dummy.review_date.strftime("%Y:%m:%d:%H:%M"))
     end
     it "second check" do
-      expect(@card.check_translation("текст")).to eq(:success)
+      expect(@card.check_translation("текст", 1000)).to eq(:success)
     end
     it "valid second review date" do
       @super_memo = SuperMemo.new(@card_dummy, 5)
@@ -49,7 +49,7 @@ describe Card do
         to eq(@card_dummy.review_date.strftime("%Y:%m:%d-%H:%M"))
     end
     it "third check" do
-      expect(@card.check_translation("текст")).to eq(:success)
+      expect(@card.check_translation("текст", 1000)).to eq(:success)
     end
     it "valid  third review date" do
       @super_memo = SuperMemo.new(@card_dummy, 5)
@@ -58,7 +58,7 @@ describe Card do
         to eq(@card_dummy.review_date.strftime("%Y:%m:%d-%H:%M"))
     end
     it "valid fourth check" do
-      expect(@card.check_translation("текст")).to eq(:success)
+      expect(@card.check_translation("текст", 1000)).to eq(:success)
     end
     it "valid forth review date" do
       @super_memo = SuperMemo.new(@card_dummy, 5)
@@ -67,7 +67,7 @@ describe Card do
         to eq(@card_dummy.review_date.strftime("%Y:%m:%d-%H:%M"))
     end
     it "is invalid check tranlation" do
-      expect(@card.check_translation("письмо")).to eq(:failed)
+      expect(@card.check_translation("письмо", 1000)).to eq(:failed)
     end
   end
 
