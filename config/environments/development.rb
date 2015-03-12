@@ -49,8 +49,8 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address: "smtp.mandrillapp.com",
     port: 587,
-    domain: "sichflashcards.com:3000",
-    authentication: :plain,
+    domain: "gmail.com",
+    authentication: "plain",
     user_name: ENV["MANDRILL_USERNAME"],
     password: ENV["MANDRILL_PASSWORD"],
     enable_starttls_auto: true
