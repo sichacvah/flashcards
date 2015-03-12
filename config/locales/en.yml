@@ -1,7 +1,7 @@
 en:
   hello: "Hello"
   card: "Card"
-  pending_cards: "You have %{cards_for_review} cards for review."
+  pending_cards: "You have %{cards_for_review_count} cards for review."
   check_yourself: "Check yourself %{root_path}"
   original_text: "Original text"
   translated_text: "Translated text"

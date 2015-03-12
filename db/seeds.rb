@@ -3,7 +3,7 @@ require "nokogiri"
 
 User.delete_all
 
-user = User.create(email: "email@email.com", password: "****",
+user = User.create(email: "sichacvah@gmail.com", password: "****",
                    password_confirmation: "****" )
 deck = user.decks.create(name: "Cats")
 URL = "http://masterrussian.com/vocabulary/most_common_words.htm"
