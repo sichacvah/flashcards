@@ -42,6 +42,12 @@ gem 'whenever', require: false
 
 gem 'http_accept_language'
 
+gem 'rollbar'
+
+gem 'newrelic_rpm'
+
+gem 'mandrill-api'
+
 group :development, :test do
 
   gem 'selenium-webdriver'

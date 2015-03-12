@@ -12,7 +12,7 @@ ru:
         update: "Изменить колоду"
   hello: "Здравствуйте"
   card: "Карточка"
-  pending_cards: "У вас %{cards_for_review} карточек для просмотра."
+  pending_cards: "У вас %{cards_for_review_count} карточек для просмотра."
   check_yourself: "Проверьте себя %{root_path}"
   original_text: "Оригинальный текст"
   translated_text: "Перевод"
