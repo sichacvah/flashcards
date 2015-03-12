@@ -1,13 +1,13 @@
 require "rails_helper"
 require "support/login"
 require "database_cleaner"
-
 DatabaseCleaner.strategy = :truncation
 
 describe "the review card process" do
-  before do
+
+  before(:each) do
     DatabaseCleaner.clean
-    user = create(:user, email: "email@email.com",
+    user = create(:user, email: "sichacvah@gmail.com",
                          password: "****",
                          password_confirmation: "****",
                          locale: :ru)
@@ -16,10 +16,10 @@ describe "the review card process" do
                              translated_text: "Дом",
                              user_id: user.id)
     card.update_attribute :review_date, Date.today
-    login "email@email.com", "****"
+    login "sichacvah@gmail.com", "****"
   end
 
-  it "true review card" do
+  it "true review card"  do
     visit review_path
     fill_in :user_input, with:"Home"
     click_button "Проверить"
@@ -37,9 +37,10 @@ end
 describe "no cards" do
   before do
     DatabaseCleaner.clean
-    user = create(:user, email: "email@email.com", password: "****",
-                         password_confirmation: "****")
-    login "email@email.com", "****"
+    user = create(:user, email: "sichacvah@gmail.com", password: "****",
+                         password_confirmation: "****",
+                         locale: :ru)
+    login "sichacvah@gmail.com", "****"
   end
   it "no cards" do
     visit review_path

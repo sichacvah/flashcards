@@ -18,7 +18,8 @@ class ReviewController < ApplicationController
       elsif check_result == :failed
         flash[:danger] = t :fail
       end
-      format.js
+      format.html { redirect_to review_path }
+      format.js {}
     end
   end
 
