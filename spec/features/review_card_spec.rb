@@ -4,7 +4,6 @@ require "database_cleaner"
 DatabaseCleaner.strategy = :truncation
 
 describe "the review card process" do
-
   before(:each) do
     DatabaseCleaner.clean
     user = create(:user, email: "sichacvah@gmail.com",
@@ -19,7 +18,7 @@ describe "the review card process" do
     login "sichacvah@gmail.com", "****"
   end
 
-  it "true review card"  do
+  it "true review card" do
     visit review_path
     fill_in :user_input, with:"Home"
     click_button "Проверить"
@@ -40,7 +39,7 @@ describe "no cards" do
     user = create(:user, email: "sichacvah@gmail.com", password: "****",
                          password_confirmation: "****",
                          locale: :ru)
-    login "sichacvah@gmail.com", "****"
+    login user.email, "****"
   end
   it "no cards" do
     visit review_path
