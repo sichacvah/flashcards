@@ -8,5 +8,4 @@ ready = ->
               .val(time_now - start_timer)
     $(this).append($(input))
 
-$(window).on('page:load', ready)
 $(document).ready(ready)
