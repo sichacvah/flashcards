@@ -1,4 +1,4 @@
-view_flash_message = (data)->
+view_flash_message = (data) ->
   flash_container = $('<div>', {
     class: "alert alert-#{data.message[0][0]}"
     })
@@ -21,7 +21,7 @@ get_new_card = ->
     type: 'get'
     url: '/review'
     dataType: 'json'
-    success: (json)->
+    success: (json) ->
       if json.message?
         $("#card_panel").empty()
         view_flash_message(json)
@@ -33,7 +33,7 @@ get_new_card = ->
 
 ready = ->
   timer = new Timer
-  $('#review_form').on 'submit', (e)->
+  $('#review_form').on 'submit', (e) ->
     do e.preventDefault
     url = $(this).attr('action')
     data =

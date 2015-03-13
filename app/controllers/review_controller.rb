@@ -4,11 +4,12 @@ class ReviewController < ApplicationController
     respond_to do |format|
       if @card.present?
         format.html
-        format.json { render json: @card, methods: [:image_url],except: [:original_text, :user_id, :review_date] }
+        format.json { render json: @card, methods: [:image_url],
+                             except: [:original_text, :user_id, :review_date] }
       else
         flash[:info] = t :not_cards
         format.html
-        format.json { render json: {message: flash}.to_json }
+        format.json { render json: { message: flash }.to_json }
       end
     end
   end
@@ -27,12 +28,11 @@ class ReviewController < ApplicationController
         flash[:danger] = t :fail
       end
       format.html { redirect_to review_path }
-      format.json { render json: { message: flash}.to_json }
+      format.json { render json: { message: flash }.to_json }
     end
   end
 
   private
-
 
   def review_params
     params.permit(:card_id, :user_input, :time_to_answer)
