@@ -45,7 +45,7 @@ ready = ->
       url: url
       data: data
       dataType: 'json'
-      success: (json)->
+      success: (json) ->
         view_flash_message(json)
         do get_new_card
         do timer.reset

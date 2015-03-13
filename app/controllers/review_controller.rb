@@ -4,8 +4,10 @@ class ReviewController < ApplicationController
     respond_to do |format|
       if @card.present?
         format.html
-        format.json { render json: @card, methods: [:image_url],
-                             except: [:original_text, :user_id, :review_date] }
+        format.json do
+          render json: @card, methods: [:image_url],
+                              except:  [:original_text, :user_id, :review_date]
+        end
       else
         flash[:info] = t :not_cards
         format.html
