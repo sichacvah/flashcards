@@ -6,7 +6,7 @@ class ReviewController < ApplicationController
         format.html
         format.json do
           render json: @card, methods: [:image_url],
-                              except:  [:original_text, :user_id, :review_date]
+                 except:  [:original_text, :user_id, :review_date]
         end
       else
         flash[:info] = t :not_cards
