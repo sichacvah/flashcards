@@ -4,7 +4,7 @@ require "database_cleaner"
 DatabaseCleaner.strategy = :truncation
 
 describe "the review card process" do
-  before(:each) do
+  before do
     DatabaseCleaner.clean
     user = create(:user, email: "sichacvah@gmail.com",
                          password: "****",
@@ -14,7 +14,7 @@ describe "the review card process" do
     card = deck.cards.create(original_text: "Home",
                              translated_text: "Дом",
                              user_id: user.id)
-    card.update_attribute :review_date, Date.today
+    card.update_attribute :review_date, Date.yesterday
     login "sichacvah@gmail.com", "****"
   end
 

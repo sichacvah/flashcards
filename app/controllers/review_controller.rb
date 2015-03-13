@@ -1,13 +1,22 @@
 class ReviewController < ApplicationController
   def index
-    set_card
+    @card = current_user.card_for_review
+    respond_to do |format|
+      if @card.present?
+        format.html
+        format.json { render json: @card, methods: [:image_url],except: [:original_text, :user_id, :review_date] }
+      else
+        flash[:info] = t :not_cards
+        format.html
+        format.json { render json: {message: flash}.to_json }
+      end
+    end
   end
 
   def review_card
     @card = Card.find(review_params[:card_id])
     check_result = @card.check_translation review_params[:user_input], review_params[:time_to_answer]
     respond_to do |format|
-      flash.clear
       if check_result == :success
         flash[:success] = t(:success)
       elsif check_result == :incomplete_match
@@ -18,15 +27,12 @@ class ReviewController < ApplicationController
         flash[:danger] = t :fail
       end
       format.html { redirect_to review_path }
-      format.js { set_card }
+      format.json { render json: { message: flash}.to_json }
     end
   end
 
   private
 
-  def set_card
-    @card = current_user.card_for_review
-  end
 
   def review_params
     params.permit(:card_id, :user_input, :time_to_answer)

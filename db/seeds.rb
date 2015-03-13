@@ -11,7 +11,7 @@ ORIGINAL_COL = 2
 TRANSLATED_COL = 3
 
 document = Nokogiri::HTML(open(URL))
-rows = document.css("table.topwords").css("tr")[1..-1]
+rows = document.css("table.topwords").css("tr")[1..10]
 
 rows.each do |row|
   cols = row.css("td")

@@ -1,19 +1,16 @@
-%br/
-- flash.each do |name, msg|
-  = content_tag :div, msg, class: "alert alert-#{name}"
+%div#flash
+  - flash.each do |name, msg|
+    = content_tag :div, msg, class: "alert alert-#{name}"
 - if card.present?
-  %div
+  %div#card_panel
     .panel.panel-default
       .panel-heading= t :card
       .panel-body
-        %div.text-center
+        %div.text-center#card_img
           = image_tag card.image.url(:medium)
         %p
           %b
             %em= t :translated_text
-          = card.translated_text
+          %span#translated_text= card.translated_text
         %hr
         = render 'form'
-- else
-  .alert.alert-info
-    %p= t :not_cards
