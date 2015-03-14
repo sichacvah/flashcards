@@ -23,10 +23,6 @@ class Card < ActiveRecord::Base
     comparison_result
   end
 
-  def image_url
-    image.url(:medium)
-  end
-
   protected
 
   def compare_text(user_input, original_text)

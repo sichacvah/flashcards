@@ -23,6 +23,7 @@ get_new_card = ->
     url: '/review'
     dataType: 'json'
     success: (json) ->
+      console.log json
       if json.message?
         $("#card_panel").empty()
         view_flash_message(json)
