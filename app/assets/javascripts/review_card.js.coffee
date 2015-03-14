@@ -1,5 +1,5 @@
 view_flash_message = (data) ->
-  flash_container = $('<div>', 
+  flash_container = $('<div>',
     {
       class: "alert alert-#{ data.message[0][0] }"
     })
