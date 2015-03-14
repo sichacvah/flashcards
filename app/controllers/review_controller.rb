@@ -5,7 +5,8 @@ class ReviewController < ApplicationController
       if @card.present?
         format.html
         format.json do
-          render json: {id: @card.id, image_url: @card.image.url(:medium), translated_text: @card.translated_text}
+          render json: { id: @card.id, image_url: @card.image.url(:medium),
+                         translated_text: @card.translated_text }
         end
       else
         flash[:info] = t(:not_cards)
