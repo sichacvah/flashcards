@@ -9,7 +9,7 @@ class ReviewController < ApplicationController
                  except:  [:original_text, :user_id, :review_date]
         end
       else
-        flash[:info] = t :not_cards
+        flash[:info] = t(:not_cards)
         format.html
         format.json { render json: { message: flash }.to_json }
       end
@@ -27,7 +27,7 @@ class ReviewController < ApplicationController
                                         translate: @card.translated_text,
                                         original: @card.original_text)
       elsif check_result == :failed
-        flash[:danger] = t :fail
+        flash[:danger] = t(:fail)
       end
       format.html { redirect_to review_path }
       format.json { render json: { message: flash }.to_json }

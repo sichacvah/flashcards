@@ -1,6 +1,7 @@
 view_flash_message = (data) ->
-  flash_container = $('<div>', {
-    class: "alert alert-#{data.message[0][0]}"
+  flash_container = $('<div>', 
+    {
+      class: "alert alert-#{ data.message[0][0] }"
     })
   flash_message = $('<p>', {
     id: 'flash_message'
@@ -10,7 +11,7 @@ view_flash_message = (data) ->
 
 class Timer
   constructor: ->
-    do @reset
+    @reset()
   reset: ->
     @time = new Date().getTime()
   get_time_left: ->
@@ -34,7 +35,7 @@ get_new_card = ->
 ready = ->
   timer = new Timer
   $('#review_form').on 'submit', (e) ->
-    do e.preventDefault
+    e.preventDefault()
     url = $(this).attr('action')
     data =
       user_input: $(this).find("#user_input").val()
