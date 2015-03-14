@@ -20,7 +20,7 @@ class Timer
 get_new_card = ->
   $.ajax
     type: 'get'
-    url: '/review'
+    url: '/dashboard/review'
     dataType: 'json'
     success: (json) ->
       console.log json
@@ -38,6 +38,7 @@ ready = ->
   $('#review_form').on 'submit', (e) ->
     e.preventDefault()
     url = $(this).attr('action')
+    console.log url
     data =
       user_input: $(this).find("#user_input").val()
       card_id: $(this).find("#card_id").val()
