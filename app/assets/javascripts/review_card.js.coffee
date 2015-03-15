@@ -20,10 +20,9 @@ class Timer
 get_new_card = ->
   $.ajax
     type: 'get'
-    url: '/review'
+    url: location.pathname
     dataType: 'json'
     success: (json) ->
-      console.log json
       if json.message?
         $("#card_panel").empty()
         view_flash_message(json)

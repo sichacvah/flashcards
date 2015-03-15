@@ -1,4 +1,4 @@
-class ReviewController < ApplicationController
+class Dashboard::ReviewController < ApplicationController
   def index
     @card = current_user.card_for_review
     respond_to do |format|

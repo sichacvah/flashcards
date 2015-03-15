@@ -1,4 +1,4 @@
-class RegistrationController < ApplicationController
+class Home::RegistrationController < ApplicationController
   skip_before_action :require_login
 
   def index

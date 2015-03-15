@@ -1,4 +1,4 @@
-class OauthsController < ApplicationController
+class Home::OauthsController < ApplicationController
   skip_before_action :require_login
 
   def oauth
