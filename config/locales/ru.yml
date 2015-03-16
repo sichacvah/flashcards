@@ -2,6 +2,8 @@ ru:
   activerecord:
     models:
       user: "Пользователь"
+      error_notification:
+        default_message: "Посмотрите здесь"
   helpers:
     submit:
       user:

@@ -11,10 +11,10 @@ class Home::RegistrationController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      login(user_params[:email], user_params[:password])
+      auto_login(@user)
       redirect_to review_path
     else
-      redirect_to root_path
+      render 'new'
     end
   end
 

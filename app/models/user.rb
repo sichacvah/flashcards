@@ -5,11 +5,15 @@ class User < ActiveRecord::Base
   belongs_to :current_deck, class_name: "Deck", foreign_key: "current_deck_id"
   accepts_nested_attributes_for :authentications
 
-  validates :password, presence: true, confirmation: true,
+  validates :password, presence: true,
+                       confirmation: true,
                        length: { minimum: 3 },
-                       on: :not_authentications
+                       on: [:create, :update],
+                       allow_nil: true
   validates :email, presence: true, uniqueness: true
-  validates :password_confirmation, presence: true, on: :not_authentications
+  validates :password_confirmation,presence: true,
+                                   on: [:create, :update],
+                                   allow_nil: true
 
   authenticates_with_sorcery! do |config|
     config.authentications_class = Authentication
