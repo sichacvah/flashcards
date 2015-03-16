@@ -2,8 +2,20 @@ ru:
   activerecord:
     models:
       user: "Пользователь"
-      error_notification:
-        default_message: "Посмотрите здесь"
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "Поле не должно быть пусто"
+              taken: "Такой email уже существует"
+            password:
+              blank: "Поле не должно быть пусто"
+              too_short: "Пароль должен быть не менее 3 символов"
+            password_confirmation:
+              blank: "Поле не должно быть пусто"
+              confirmation: "Пароли не совпадают"
+
   helpers:
     submit:
       user:
